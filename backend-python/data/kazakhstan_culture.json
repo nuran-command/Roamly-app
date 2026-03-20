@@ -1,0 +1,50 @@
+[
+  {
+    "category": "Photography",
+    "urgency": 1,
+    "trigger_zone": "Government Buildings / Military",
+    "rule": "Photographing government buildings, military installations, and border areas is strictly prohibited and can lead to detention by authorities.",
+    "penalty": "Confiscation of equipment, fines, and possible detention for questioning.",
+    "location": null
+  },
+  {
+    "category": "Alcohol",
+    "urgency": 2,
+    "trigger_zone": "Public Places",
+    "rule": "Drinking alcohol in public places (parks, streets, playgrounds) is an administrative offense. Alcohol should only be consumed in licensed bars and restaurants.",
+    "penalty": "Fine of approximately 5-10 MRP (Monthly Residential Project - standard fine unit in Kazakhstan).",
+    "location": null
+  },
+  {
+    "category": "Identity",
+    "urgency": 1,
+    "trigger_zone": "Anywhere",
+    "rule": "Foreigners are required to carry their passport and registration documents at all times. Police have the right to stop and check identity documents.",
+    "penalty": "Fine or detention until identity is verified.",
+    "location": null
+  },
+  {
+    "category": "Mosques",
+    "urgency": 2,
+    "trigger_zone": "Religious Sites",
+    "rule": "When visiting mosques, dress modestly. Women should cover their heads and men should not wear shorts. Remove shoes before entering.",
+    "penalty": "Refusal of entry or request to leave.",
+    "location": {
+      "name": "Hazrat Sultan Mosque",
+      "latitude": 51.1255,
+      "longitude": 71.4705
+    }
+  },
+  {
+    "category": "Drones",
+    "urgency": 1,
+    "trigger_zone": "Astana Center / Restricted Airspace",
+    "rule": "Drones with a weight over 250g must be registered. Flying in Astana center without a special permit is strictly forbidden due to proximity to government buildings.",
+    "penalty": "Fine and confiscation of the drone.",
+    "location": {
+      "name": "Ak Orda Presidential Palace",
+      "latitude": 51.1261,
+      "longitude": 71.4461
+    }
+  }
+]

@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+langchain
+pydantic
+python-dotenv
+pinecone-client
+google-generativeai
+langchain-google-genai
+langchain-pinecone

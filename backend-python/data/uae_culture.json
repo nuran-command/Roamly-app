@@ -1,0 +1,162 @@
+{
+  "country": "UAE",
+  "city": "Dubai",
+  "rules": [
+    {
+      "category": "Photography",
+      "urgency": 1,
+      "trigger_zone": "Public / Online",
+      "rule": "Taking photos or videos of any person — in a public or private place — without their explicit consent is a criminal offense. Sharing, saving, copying, or posting such images on social media compounds the charge under cybercrime law. This applies equally to tourists and street photographers. Photographing accident victims is also explicitly banned. If you capture someone incidentally in the background, legal risk is lower, but sharing that content online is still actionable.",
+      "penalty": "Minimum 6 months imprisonment and/or fine of AED 150,000–500,000. If image is edited to harm or humiliate: 1 year imprisonment and fine of AED 250,000–500,000. Legal basis: Article 44 of Federal Decree-Law No. 34 of 2021 (Cybercrime Law).",
+      "location": null
+    },
+    {
+      "category": "Gambling",
+      "urgency": 1,
+      "trigger_zone": "Public / Online / Private",
+      "rule": "All forms of gambling are strictly illegal in the UAE — including casino games, card games, sports betting, lotteries, online gambling, and even private poker nights among friends if money is wagered. Online gambling sites are actively blocked by the TDRA. The law extends to organizing, managing, or promoting gambling online. Limited exceptions exist only for regulated horse and camel racing at licensed tracks, and a small number of government-licensed lottery activities (issued by the GCGRA).",
+      "penalty": "Participation: Imprisonment up to 2 years and/or fine of AED 250,000–500,000 + deportation for expats. Operating/organizing: Imprisonment up to 10 years. Online facilitation: Additional penalties under cybercrime law. Legal basis: Articles 414–416 of Federal Decree-Law No. 31 of 2021 (UAE Penal Code); Article 460 of the same law.",
+      "location": null
+    },
+    {
+      "category": "Driving",
+      "urgency": 1,
+      "trigger_zone": "Roads / Vehicles",
+      "rule": "The UAE enforces a strict 0.00% blood alcohol content (BAC) policy for all drivers — there is no legal threshold. Any detectable trace of alcohol while driving is a criminal offense, regardless of impairment level. This applies to tourists in rental cars, residents, and even passengers whose alcohol from the previous night has not fully metabolized. Carrying sealed, legally purchased alcohol in the car boot is permitted. Open containers in a vehicle are strictly prohibited. Minimum legal drinking age is 21.",
+      "penalty": "First offense: Fine of AED 20,000–100,000 + imprisonment up to 6 months + 23 black points + vehicle impoundment 60 days + license suspension 3 months. Repeat offenses: Fine up to AED 200,000 + longer imprisonment + license cancellation + deportation. If DUI causes death: Minimum 1 year imprisonment + AED 100,000 fine. Legal basis: Article 52 of Federal Traffic Law No. 21 of 1995 (amended 2025); Article 49 UAE Penal Code.",
+      "location": null
+    },
+    {
+      "category": "Social",
+      "urgency": 1,
+      "trigger_zone": "Public / Online",
+      "rule": "Same-sex relationships and sexual activity are criminalized under both federal law and emirate-level law in the UAE. Dubai's Penal Code (Article 177) specifically criminalizes consensual same-sex activity. Cross-dressing and gender expression inconsistent with one's biological sex is also prosecuted. Entrapment via dating apps and monitoring of LGBTQ+ online communities has been documented. There are no legal protections or anti-discrimination provisions for LGBTQ+ individuals. This law applies to all people regardless of nationality.",
+      "penalty": "Dubai Penal Code (Article 177): Imprisonment up to 10 years. Federal Penal Code: Minimum 6 months imprisonment with no prescribed maximum. Deportation for non-nationals. Sharia provisions may apply in certain contexts. Legal basis: Article 177 of Dubai Penal Code; UAE Federal Penal Code Articles 354–356.",
+      "location": null
+    },
+    {
+      "category": "Drugs",
+      "urgency": 1,
+      "trigger_zone": "Airport / Public",
+      "rule": "The UAE maintains one of the world's strictest anti-narcotics regimes. Even residual drug traces in the bloodstream from prior consumption abroad can constitute possession. Under Cabinet Decision No. 43/2024 (effective June 2024), first-time travelers found at entry points with small personal-use quantities now face fines rather than immediate imprisonment — but must pay before being allowed entry. A second offense triggers automatic deportation and a 3-year ban. Any amount intended for another person is treated as trafficking. The death penalty is possible for large-scale trafficking.",
+      "penalty": "First offense (personal trace quantity, 2024 reform): Fine of AED 5,000–20,000, payable before entry. Second offense: AED 10,000–30,000 + deportation + 3-year ban. Third offense: AED 50,000–100,000 + deportation + permanent ban. Possession for personal use (pre-reform or larger amounts): 3 months–2 years imprisonment + AED 20,000–100,000 fine. Trafficking: Life imprisonment or death penalty. Legal basis: Federal Law No. 14 of 1995 (updated 2024); Cabinet Decision No. 43/2024.",
+      "location": {
+        "name": "Dubai International Airport",
+        "latitude": 25.2532,
+        "longitude": 55.3657
+      }
+    },
+    {
+      "category": "Social Media",
+      "urgency": 1,
+      "trigger_zone": "Online",
+      "rule": "Sharing, forwarding, or publishing content online that contains false information, rumors, or unverified news is a criminal offense — even if you did not create the content. This includes forwarding WhatsApp messages or sharing social media posts. Any content that could 'agitate public opinion,' cause panic, harm national security, or contradict official sources is prosecutable. The law also criminalizes sharing links to illegal content, even if you didn't create it. Impersonating another person online is also illegal. Authorities actively monitor social media.",
+      "penalty": "Sharing false/panic-inducing content: 1 year imprisonment and/or AED 100,000 fine. If content agitates public opinion or occurs during a crisis: 2 years + AED 200,000. Impersonation: Imprisonment + AED 250,000–500,000. Legal basis: Federal Decree-Law No. 34 of 2021 (Cybercrime Law), Articles 22–25.",
+      "location": null
+    },
+    {
+      "category": "Alcohol",
+      "urgency": 1,
+      "trigger_zone": "Sharjah Emirate",
+      "rule": "The Emirate of Sharjah (30 km north of Dubai, and home to a second airport used by budget carriers) maintains a complete ban on alcohol — it is entirely prohibited to buy, possess, carry, or consume alcohol anywhere in Sharjah, including in hotel rooms and private residences. Travelers transiting between Dubai and Sharjah must not carry open or unsealed alcohol. This is a critical trap for tourists who fly into Sharjah Airport (used by Air Arabia and Wizz Air) instead of Dubai International.",
+      "penalty": "Arrest, fine, and possible imprisonment. Legal basis: Emirate of Sharjah Local Law No. 15 of 1995.",
+      "location": {
+        "name": "Sharjah International Airport",
+        "latitude": 25.3286,
+        "longitude": 55.5172
+      }
+    },
+    {
+      "category": "Clothing",
+      "urgency": 1,
+      "trigger_zone": "Public",
+      "rule": "Wearing clothing with offensive text, symbols, graphic imagery, or content contrary to public morals is prohibited. This includes t-shirts with profanity, sexually suggestive graphics, anti-religious statements, or imagery that could be deemed disrespectful to Islam or UAE values. Nudity in public (including toplessness on non-designated beaches) is an offense. Swimwear is only appropriate at pools, private beaches, and designated beach areas — not in streets, malls, or general public areas.",
+      "penalty": "Fine and/or arrest. Repeat offense or aggravated cases: Court appearance + potential deportation. Legal basis: Article 358 of Federal Decree-Law No. 31 of 2021 (UAE Penal Code — Public Indecency provisions).",
+      "location": null
+    },
+    {
+      "category": "Pedestrian",
+      "urgency": 1,
+      "trigger_zone": "Roads / Streets",
+      "rule": "Jaywalking — crossing any road outside a designated pedestrian crossing, zebra crossing, footbridge, or underpass — is illegal across all UAE emirates under Federal Decree-Law No. 14 of 2024 (in effect March 29, 2025). This includes e-scooter and bicycle riders. On roads with a speed limit of 80 km/h or higher, crossing from a non-designated area is a criminal offense regardless of whether an accident occurs. If you cross illegally and are hit by a car travelling within the speed limit, you cannot claim compensation — and may owe the driver damages instead. Dubai recorded over 177,000 jaywalking violations in 2024 alone.",
+      "penalty": "Standard fine: AED 400 (no accident). If jaywalking causes an accident: AED 5,000–10,000 fine and/or imprisonment. On 80km/h+ roads: minimum 3 months imprisonment and/or minimum AED 10,000 fine + full civil/criminal liability. Legal basis: Article 7 of Federal Decree-Law No. 14 of 2024 on Traffic Regulation.",
+      "location": null
+    },
+    {
+      "category": "Driving",
+      "urgency": 2,
+      "trigger_zone": "Roads / Vehicles",
+      "rule": "Using a mobile phone in any way while driving — including holding the phone, texting, calling, scrolling social media, checking GPS, or filming — is illegal. This applies at traffic lights, in slow-moving traffic, and at all times when the vehicle is in motion. Dubai Police deployed AI-powered cameras that detect phone use even through tinted windows. Hands-free kits (Bluetooth, earpieces) are permitted. Voice-activated GPS is permitted if the phone is mounted.",
+      "penalty": "AED 800 fine + 4 black points. From October 2024 (Dubai-specific crackdown): mandatory 30-day vehicle impoundment in addition to the fine and black points. Legal basis: UAE Federal Traffic Law; Dubai Police Local Decree (October 2024).",
+      "location": null
+    },
+    {
+      "category": "Driving",
+      "urgency": 2,
+      "trigger_zone": "Roads / Vehicles",
+      "rule": "All vehicle occupants — including every passenger in the back seat — must wear a seatbelt at all times. Children under 4 years old must be secured in an appropriate child safety seat (rear-facing for infants, forward-facing for toddlers, booster for older children). Children under 10 years old or shorter than 145 cm must sit in the back seat — not the front. A rear-facing child seat must never be placed in the front passenger seat if an active airbag is present. These rules apply to tourists in rental cars and taxis as well as residents.",
+      "penalty": "Driver fined AED 400 + 4 black points for every unbelted passenger. Same fine for absence of child safety seat for children under 4. Same fine for a child under 10/145cm sitting in the front seat. Legal basis: UAE Federal Traffic Law; Ministerial Resolution No. 178/2017; Federal Decree-Law No. 14 of 2024.",
+      "location": null
+    },
+    {
+      "category": "Driving",
+      "urgency": 1,
+      "trigger_zone": "Roads / Vehicles",
+      "rule": "Hit-and-run is a serious criminal offense in the UAE. Drivers involved in any road accident causing injury, death, or significant property damage must stop, remain at the scene, provide their information, and call the police (999) or the relevant authority. Fleeing the scene — even if you panic and leave to call for help — is prosecutable. You must not move your vehicle from the accident position until police arrive and authorize it, except in cases creating a safety hazard on a major road. If the accident causes only minor property damage with no injuries, both parties can exchange information and proceed to a police station to file a report within 24 hours.",
+      "penalty": "Fleeing scene after injury accident: Up to 1 year imprisonment and/or AED 50,000–100,000 fine. Fleeing after fatal accident: Up to 2 years imprisonment + AED 100,000–200,000 fine. Legal basis: Articles 36–38 of Federal Decree-Law No. 14 of 2024 on Traffic Regulation.",
+      "location": null
+    },
+    {
+      "category": "Social",
+      "urgency": 2,
+      "trigger_zone": "Public / Hotels / Residential",
+      "rule": "Since Federal Decree-Law No. 31 of 2021 (effective January 2, 2022), unmarried opposite-sex couples may legally cohabit in the UAE — sharing hotel rooms, apartments, and accommodation. Hotels no longer require proof of marriage at check-in. However, critical exceptions remain: (1) If either person is currently married to someone else, cohabitation constitutes adultery, which is still a criminal offense. (2) A spouse or legal guardian of either party can still file a criminal complaint under Article 409, triggering potential prosecution. (3) Unmarried couples cannot sponsor each other for residence visas — the UAE only offers spousal visa categories. (4) Public displays of affection remain prohibited regardless of relationship status.",
+      "penalty": "Cohabitation itself: No longer criminal (2022 reform). Adultery (cohabiting while married to another): Criminal offense, up to 6 months imprisonment. Article 409 complaint filed by spouse/guardian: Minimum 6 months imprisonment. Legal basis: Article 409 of Federal Decree-Law No. 31 of 2021 (UAE Penal Code).",
+      "location": null
+    },
+    {
+      "category": "Financial",
+      "urgency": 1,
+      "trigger_zone": "Banks / Businesses",
+      "rule": "The UAE has largely decriminalized bounced cheques due to insufficient funds under Federal Decree-Law No. 50 of 2022. However, important criminal triggers remain: (1) Deliberately instructing your bank not to pay a cheque (stop payment without valid legal grounds). (2) Closing or draining an account before a cheque clears. (3) Signing or writing a cheque incorrectly on purpose. (4) Forging or counterfeiting a cheque. For tourists and short-term visitors: unpaid rent cheques or security deposit cheques are now handled through civil Execution Courts, which can impose a travel ban — trapping you in the UAE — within 15 days of a court order. Always ensure cheques you issue have sufficient funds before departure.",
+      "penalty": "Civil (insufficient funds): Civil Execution Court order → asset seizure → travel ban + arrest warrant if unpaid within 15 days. Criminal (bad faith/forgery): Imprisonment minimum 1 year + fine of AED 20,000–100,000. If account has ≥4 bounced cheques in 1 year: bank mandated to close account, triggering criminal prosecution on next cheque. Legal basis: Federal Decree-Law No. 50 of 2022 (Commercial Transactions Law).",
+      "location": null
+    },
+    {
+      "category": "Technology",
+      "urgency": 2,
+      "trigger_zone": "Online / Mobile",
+      "rule": "VoIP (Voice over Internet Protocol) calls — including WhatsApp voice/video calls, FaceTime, Skype calls, Google Meet, and similar services — are officially regulated by the TDRA. Only TDRA-licensed operators may provide VoIP telephony services commercially. Consumer access to most VoIP apps is restricted or blocked on UAE telecom networks (Etisalat/e&, du). Using a VPN specifically to bypass these blocks and make VoIP calls can expose users to legal risk under the cybercrime law. Business-grade VoIP through licensed corporate providers is permitted. Note: WhatsApp and other messenger text/chat functions are generally accessible; only the voice/video call feature is subject to restriction.",
+      "penalty": "Using unlicensed VoIP commercially: Fines under TDRA regulations. Using VPN to bypass blocks for VoIP: Potential fine under Article 10 of Federal Decree-Law No. 34 of 2021 (Cybercrime Law) if combined with other prohibited activity. TDRA-licensed VoIP: Legal. Legal basis: TDRA Regulatory Framework; Federal Decree-Law No. 34 of 2021.",
+      "location": null
+    },
+    {
+      "category": "Financial",
+      "urgency": 1,
+      "trigger_zone": "Airport / Border",
+      "rule": "Travelers entering or leaving the UAE must declare cash, negotiable monetary instruments (bearer cheques, money orders, gold bars, precious metals), or any financial instrument with a value exceeding AED 100,000 (approximately USD 27,000). This applies in both directions — arriving and departing. Failure to declare is a criminal offense and the funds will be confiscated. There is no limit on the amount you can carry, but declaration is mandatory above the threshold. This rule is enforced by UAE Customs and the Financial Intelligence Unit (FIU).",
+      "penalty": "Failure to declare: Confiscation of undeclared funds + possible imprisonment and fines. Intentional concealment classified as money laundering: Imprisonment of up to 10 years + fine of AED 300,000–5,000,000. Legal basis: Federal Decree-Law No. 20 of 2018 on Anti-Money Laundering; UAE Customs Law.",
+      "location": {
+        "name": "Dubai International Airport",
+        "latitude": 25.2532,
+        "longitude": 55.3657
+      }
+    },
+    {
+      "category": "Photography",
+      "urgency": 2,
+      "trigger_zone": "Beaches / Public Areas",
+      "rule": "Photographing women on public beaches or in public spaces — particularly in swimwear or undressed states — without clear consent is a criminal offense under the cybercrime law. Even taking a photo 'for personal use' that captures identifiable individuals in compromising or private moments is prosecutable. Social media influencers and content creators must obtain written or verbal consent from anyone identifiable in their footage before publishing. Broadcasting live video on social media from public spaces where identifiable individuals appear without consent is also a grey legal area.",
+      "penalty": "Unauthorized photography: AED 150,000–500,000 fine and/or 6 months imprisonment. Sharing/publishing without consent: AED 250,000–500,000 fine and/or 1 year imprisonment. Legal basis: Article 44 of Federal Decree-Law No. 34 of 2021 (Cybercrime Law).",
+      "location": null
+    },
+    {
+      "category": "Health",
+      "urgency": 1,
+      "trigger_zone": "Public",
+      "rule": "Smoking in prohibited areas is heavily enforced in the UAE. Smoking (including e-cigarettes and vaping devices) is banned in: all enclosed public spaces (malls, restaurants, offices, hospitals, airports), government buildings, educational institutions, and within a designated perimeter around schools and mosques. Dedicated smoking areas (musallahs) are provided in malls and airports. Selling tobacco products or e-cigarettes to anyone under 18 is a criminal offense. Importing vaping devices and e-cigarettes into the UAE is permitted for personal use (as of 2019, when the ban was lifted), but selling counterfeit or unlicensed vaping products is prohibited.",
+      "penalty": "Smoking in prohibited public area: AED 200–500 per offense. Selling tobacco to minors: Fines up to AED 10,000 + business license suspension. Legal basis: Federal Law No. 15 of 2009 on Tobacco Control; Cabinet Resolution No. 20 of 2015; Local Regulations by Dubai Municipality.",
+      "location": null
+    }
+  ]
+}
