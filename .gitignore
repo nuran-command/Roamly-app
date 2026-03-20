@@ -1,4 +1,6 @@
 # Secrets & API Keys
+.DS_Store
+**/.DS_Store
 .env
 .env.local
 *.pem
