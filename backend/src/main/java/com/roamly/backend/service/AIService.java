@@ -17,7 +17,7 @@ public class AIService {
     @Autowired
     private FirebaseService firebaseService;
     
-    @Autowired
+    @Autowired(required = false)
     private com.roamly.backend.repository.UserRepository userRepository;
 
     private final String PYTHON_BASE_URL = "http://localhost:8000";
@@ -62,13 +62,15 @@ public class AIService {
             response.put("push_notification", "True"); 
 
             // Trigger Real Push Notification
-            for (com.roamly.backend.model.User user : userRepository.findAll()) {
-                if (user.getFcmToken() != null) {
-                    firebaseService.sendPushNotification(
-                        user.getFcmToken(), 
-                        "🚨 ROAMLY RED ALERT", 
-                        "Stay away from " + currentZoneName + "! High legal sensitivity."
-                    );
+            if (userRepository != null) {
+                for (com.roamly.backend.model.User user : userRepository.findAll()) {
+                    if (user.getFcmToken() != null) {
+                        firebaseService.sendPushNotification(
+                            user.getFcmToken(), 
+                            "🚨 ROAMLY RED ALERT", 
+                            "Stay away from " + currentZoneName + "! High legal sensitivity."
+                        );
+                    }
                 }
             }
             

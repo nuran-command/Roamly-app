@@ -7,3 +7,5 @@ pinecone-client
 google-generativeai
 langchain-google-genai
 langchain-pinecone
+overpass
+geopy

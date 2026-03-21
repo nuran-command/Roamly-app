@@ -12,7 +12,7 @@ import java.util.Optional;
 @RequestMapping("/api/user")
 public class UserController {
 
-    @Autowired
+    @Autowired(required = false)
     private UserRepository userRepository;
 
     @PostMapping("/fcm-token")
@@ -20,7 +20,7 @@ public class UserController {
         String email = request.get("email");
         String token = request.get("token");
 
-        if (email == null || token == null) return "Missing data";
+        if (userRepository == null) return "DB is currently offline. Token not saved.";
 
         Optional<User> userOpt = userRepository.findByEmail(email);
         User user;
