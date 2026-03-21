@@ -62,7 +62,7 @@ public class AIService {
             response.put("push_notification", "True"); 
 
             // Trigger Real Push Notification
-            userRepository.findAll().forEach(user -> {
+            for (com.roamly.backend.model.User user : userRepository.findAll()) {
                 if (user.getFcmToken() != null) {
                     firebaseService.sendPushNotification(
                         user.getFcmToken(), 
@@ -70,7 +70,7 @@ public class AIService {
                         "Stay away from " + currentZoneName + "! High legal sensitivity."
                     );
                 }
-            });
+            }
             
             // Forward check to Python AI for specific insight
             try {
