@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from app.engine import get_cultural_tip, get_nearby_rules
+from app.engine import get_cultural_tip, get_nearby_rules, scan_image_with_gemini, search_nearby_places
 
 app = FastAPI(title="Roamly AI Backend")
 
@@ -38,9 +38,12 @@ class ImageQuery(BaseModel):
 
 @app.post("/scan-menu")
 def scan_menu(query: ImageQuery):
-    from app.engine import scan_image_with_gemini
     try:
         tip = scan_image_with_gemini(query.image_base64, query.language)
         return {"tip": tip}
     except Exception as e:
         return {"tip": f"Error parsing image: {str(e)}"}
+
+@app.post("/nearby-places")
+def get_nearby_places(request: LocationRequest, category: str = "tourist_attraction"):
+    return {"places": search_nearby_places(request.lat, request.lon, category)}

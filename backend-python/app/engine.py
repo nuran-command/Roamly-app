@@ -156,3 +156,29 @@ def scan_image_with_gemini(image_base64: str, language: str = "English") -> str:
         return response.content
     except Exception as e:
         return f"Visual Analysis Error: {str(e)}"
+
+import requests
+
+def search_nearby_places(lat, lon, category="tourist_attraction"):
+    api_key = os.getenv("GOOGLE_PLACES_API_KEY")
+    if not api_key:
+        return {"error": "Google Places API Key missing"}
+        
+    url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat},{lon}&radius=2000&type={category}&key={api_key}"
+    
+    try:
+        response = requests.get(url)
+        data = response.json()
+        results = data.get("results", [])
+        
+        places = []
+        for place in results[:10]: # Return top 10
+            places.append({
+                "name": place.get("name"),
+                "rating": place.get("rating"),
+                "address": place.get("vicinity"),
+                "type": category
+            })
+        return places
+    except Exception as e:
+        return {"error": str(e)}
