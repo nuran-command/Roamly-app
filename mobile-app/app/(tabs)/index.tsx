@@ -58,7 +58,7 @@ export default function CurrentStatusScreen() {
   }
 
   async function registerForPushNotificationsAsync() {
-    if (!Device.isDevice) return;
+    if (Platform.OS === 'web' || !Device.isDevice) return;
     const { status: existingStatus } = await Notifications.getPermissionsAsync();
     let finalStatus = existingStatus;
     if (existingStatus !== 'granted') {
