@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, Text, View, Platform, Alert, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, View, Platform, Alert, ScrollView } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Link } from 'expo-router';
 import * as Location from 'expo-location';
@@ -6,48 +6,26 @@ import { Ionicons } from '@expo/vector-icons';
 import Storage from '../../utils/storage';
 import * as Device from 'expo-device';
 import Constants from 'expo-constants';
-
-// Push Notification Safe Import (Dynamic)
-let Notifications: any = null;
-const loadNotifications = async () => {
-  if (Platform.OS !== 'web' && !Notifications) {
-     try {
-       Notifications = require('expo-notifications');
-     } catch (e) {
-       console.log("Notifications not available in Expo Go");
-     }
-  }
-};
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function CurrentStatusScreen() {
   const [status, setStatus] = useState("Scanning environment...");
   const [loading, setLoading] = useState(false);
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isOffline, setIsOffline] = useState(false);
   const [disasters, setDisasters] = useState<any[]>([]);
   const [exchangeRate, setExchangeRate] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
-      // 1. Initial Load & Permissions
-      loadNotifications();
+      // 1. GPS Permissions
       let { status: gpsStatus } = await Location.requestForegroundPermissionsAsync();
-      if (gpsStatus !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
+      if (gpsStatus !== 'granted') return;
+      
       let loc = await Location.getCurrentPositionAsync({});
       setLocation(loc);
       
-      // 2. Register for Push if on real device
-      if (Platform.OS !== 'web' && Device.isDevice && Notifications) {
-         registerForPushNotificationsAsync().then(token => {
-            if (token) sendTokenToBackend(token);
-         });
-      }
-
-      // 3. Load Cached Status
+      // 2. Load Cached Status
       const cached = await Storage.getItem(`cached_status`);
       if (cached) {
         const parsed = JSON.parse(cached);
@@ -58,37 +36,18 @@ export default function CurrentStatusScreen() {
     })();
   }, []);
 
-  async function sendTokenToBackend(token: string) {
-    try {
-      await fetch('http://192.168.0.5:8080/api/user/fcm-token', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: "explorer@roamly.com", token: token })
-      });
-    } catch (e) {}
-  }
-
-  async function registerForPushNotificationsAsync() {
-    if (!Notifications || !Device.isDevice) return;
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-    if (finalStatus !== 'granted') return;
-    const projectId = Constants.expoConfig?.extra?.eas?.projectId ?? Constants.expoConfig?.owner;
-    return (await Notifications.getExpoPushTokenAsync({ projectId })).data;
-  }
-
   const checkStatus = async () => {
     setLoading(true);
     setStatus("Analysing surroundings...");
     try {
-      if (!location) return;
+      if (!location) {
+        setStatus("GPS not ready");
+        setLoading(false);
+        return;
+      };
       
       const API_URL = 'http://192.168.0.5:8080';
-      const PYTHON_URL = 'http://127.0.0.1:8000'; // Or your local IP
+      const PYTHON_URL = 'http://127.0.0.1:8000'; 
 
       // 1. Get Safety Status from Java
       const res = await fetch(`${API_URL}/api/ai/safety-check`, { 
@@ -98,21 +57,25 @@ export default function CurrentStatusScreen() {
       });
       const data = await res.json();
       
-      // 2. Get Exchange Rate from Python (New!)
+      // 2. Get Exchange Rate from Python
       try {
+        // Updated to use your chosen AED -> KZT pair
         const xres = await fetch(`${PYTHON_URL}/currency-swap?base=AED&target=KZT`, { method: 'POST' });
         const xdata = await xres.json();
-        setExchangeRate(xdata.rate?.KZT?.rate_for_amount?.toFixed(2));
-      } catch (e) {}
+        const rate = xdata.rate?.KZT?.rate_for_amount;
+        if (rate) setExchangeRate(rate.toFixed(2));
+      } catch (e) {
+        console.log("Python Backend Offline for Currency");
+      }
 
-      setStatus(data.alert || "Safe Zone. No active alerts.");
+      setStatus(data.alerts || "Safe Zone. No active alerts.");
       setDisasters(data.emergency_disasters || []);
       setIsOffline(false);
 
-      await Storage.setItem('cached_status', JSON.stringify({ alert: data.alert, timestamp: new Date().getTime() }));
+      await Storage.setItem('cached_status', JSON.stringify({ alert: data.alerts, timestamp: new Date().getTime() }));
       
       if (data.status === "RESTRICTED") {
-          Alert.alert("🚨 ROAMLY RED ALERT", data.alert);
+          Alert.alert("🚨 ROAMLY RED ALERT", data.alerts);
       }
       
     } catch (error) {
@@ -120,7 +83,9 @@ export default function CurrentStatusScreen() {
       const cached = await Storage.getItem('cached_status');
       if (cached) {
           const parsed = JSON.parse(cached);
-          setStatus(parsed.alert + " (Offline)");
+          setStatus(parsed.alert + " (Offline Mode)");
+      } else {
+          setStatus("Network Error: Check Backends");
       }
     } finally {
       setLoading(false);
@@ -132,47 +97,52 @@ export default function CurrentStatusScreen() {
       <ScrollView contentContainerStyle={styles.container}>
         {/* Top Intelligence Bar */}
         <View style={styles.intelBar}>
-          <Text style={styles.intelText}>💰 1 AED ≈ {exchangeRate || "--.--"} KZT</Text>
-          <Text style={styles.intelText}>⚡️ AI Shield: Active</Text>
+          <Text style={styles.intelText}>💰 1 AED ≈ {exchangeRate || "??.??"} KZT</Text>
+          <Text style={styles.intelText}>⚡️ Shield: Active</Text>
         </View>
 
         <View style={styles.header}>
           <Ionicons name="shield-checkmark" size={64} color="#3B82F6" />
           <Text style={styles.title}>Roamly</Text>
-          <Text style={styles.subtitle}>Unified Safety & Discovery</Text>
+          <Text style={styles.subtitle}>Autonomous Travel Guardian</Text>
         </View>
 
-        {/* Major Emergencies (GDACS) */}
+        {/* Emergency Alerts */}
         {disasters.length > 0 && (
           <View style={styles.disasterBox}>
             <Text style={styles.disasterTitle}>📢 Regional Emergency Alerts (GDACS)</Text>
             {disasters.map((d, i) => (
-              <Text key={i} style={styles.disasterText}>• {d.name} ({d.severity})</Text>
+              <Text key={i} style={styles.disasterText}>• {d.name || "Unknown Threat"}</Text>
             ))}
           </View>
         )}
         
         <View style={[styles.statusBox, isOffline && styles.offlineBox]}>
-          <Text style={styles.statusLabel}>{isOffline ? "Current Area (Offline)" : "Live Context Status"}</Text>
+          <Text style={styles.statusLabel}>{isOffline ? "Status (Offline)" : "Local Intelligence"}</Text>
           <Text style={styles.statusValue}>{status}</Text>
         </View>
 
         <TouchableOpacity style={styles.scanButton} onPress={checkStatus} disabled={loading}>
           <Ionicons name="radio-outline" size={24} color="#fff" style={{ marginRight: 8 }} />
-          <Text style={styles.scanButtonText}>{loading ? "Pinging Sensors..." : "Rescan Environment"}</Text>
+          <Text style={styles.scanButtonText}>{loading ? "Analysing..." : "Scan Surroundings"}</Text>
         </TouchableOpacity>
 
+        {/* Action Grid */}
         <View style={styles.gridContainer}>
            <Link href="/chat" asChild>
-            <TouchableOpacity style={styles.gridBtn}>
-              <Ionicons name="chatbubbles-outline" size={32} color="#fff" />
-              <Text style={styles.gridBtnText}>Ask Guru</Text>
+            <TouchableOpacity style={styles.gridBtn} activeOpacity={0.7}>
+              <View style={styles.centered}>
+                <Ionicons name="chatbubbles-outline" size={32} color="#fff" />
+                <Text style={styles.gridBtnText}>Ask AI</Text>
+              </View>
             </TouchableOpacity>
            </Link>
            <Link href="/scanner" asChild>
-            <TouchableOpacity style={[styles.gridBtn, { backgroundColor: '#10B981' }]}>
-              <Ionicons name="scan-outline" size={32} color="#fff" />
-              <Text style={styles.gridBtnText}>Gastro Scan</Text>
+            <TouchableOpacity style={[styles.gridBtn, { backgroundColor: '#10B981' }]} activeOpacity={0.7}>
+              <View style={styles.centered}>
+                <Ionicons name="scan-outline" size={32} color="#fff" />
+                <Text style={styles.gridBtnText}>Scan Menu</Text>
+              </View>
             </TouchableOpacity>
            </Link>
         </View>
@@ -185,21 +155,22 @@ export default function CurrentStatusScreen() {
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#0F172A' },
   container: { padding: 20, alignItems: 'center', paddingBottom: 40 },
+  centered: { alignItems: 'center', justifyContent: 'center' },
   intelBar: { width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10, borderBottomWidth: 1, borderColor: '#1E293B', marginBottom: 20 },
-  intelText: { color: '#64748B', fontSize: 13, fontWeight: '600' },
+  intelText: { color: '#64748B', fontSize: 12, fontWeight: 'bold' },
   header: { alignItems: 'center', marginBottom: 30 },
   title: { fontSize: 32, fontWeight: 'bold', color: '#fff', marginTop: 10 },
   subtitle: { fontSize: 14, color: '#94A3B8' },
-  disasterBox: { backgroundColor: '#7F1D1D', width: '100%', padding: 15, borderRadius: 15, marginBottom: 20, borderWidth: 1, borderColor: '#B91C1C' },
-  disasterTitle: { color: '#FCA5A5', fontWeight: 'bold', fontSize: 13, marginBottom: 8 },
-  disasterText: { color: '#fff', fontSize: 12, marginBottom: 2 },
+  disasterBox: { backgroundColor: '#450a0a', width: '100%', padding: 15, borderRadius: 15, marginBottom: 20, borderWidth: 1, borderColor: '#991b1b' },
+  disasterTitle: { color: '#fca5a5', fontWeight: 'bold', fontSize: 13, marginBottom: 5 },
+  disasterText: { color: '#fff', fontSize: 12 },
   statusBox: { backgroundColor: '#1E293B', width: '100%', padding: 25, borderRadius: 20, marginBottom: 25, borderWidth: 1, borderColor: '#334155' },
   offlineBox: { borderColor: '#F59E0B' },
-  statusLabel: { color: '#94A3B8', fontSize: 12, fontWeight: 'bold', textTransform: 'uppercase', marginBottom: 10 },
-  statusValue: { color: '#fff', fontSize: 18, fontWeight: '500' },
-  scanButton: { flexDirection: 'row', backgroundColor: '#3B82F6', paddingVertical: 18, borderRadius: 15, width: '100%', alignItems: 'center', justifyContent: 'center', marginBottom: 20 },
+  statusLabel: { color: '#94A3B8', fontSize: 11, fontWeight: 'bold', textTransform: 'uppercase', marginBottom: 10 },
+  statusValue: { color: '#fff', fontSize: 17, fontWeight: '500' },
+  scanButton: { flexDirection: 'row', backgroundColor: '#3B82F6', paddingVertical: 18, borderRadius: 15, width: '100%', alignItems: 'center', justifyContent: 'center', marginBottom: 15 },
   scanButtonText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
   gridContainer: { flexDirection: 'row', justifyContent: 'space-between', width: '100%' },
-  gridBtn: { backgroundColor: '#8B5CF6', flex: 0.48, height: 120, borderRadius: 20, justifyContent: 'center', alignItems: 'center' },
-  gridBtnText: { color: '#fff', fontWeight: 'bold', marginTop: 10 },
+  gridBtn: { backgroundColor: '#8B5CF6', flex: 0.48, height: 110, borderRadius: 20, justifyContent: 'center', alignItems: 'center' },
+  gridBtnText: { color: '#fff', fontWeight: 'bold', marginTop: 8 },
 });
