@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from app.engine import get_cultural_tip, get_nearby_rules, scan_image_with_gemini, search_nearby_places
+from app.utilities import get_exchange_rate, text_to_speech, get_emergency_alerts
+from app.osm_service import get_restricted_polygons
 
 app = FastAPI(title="Roamly AI Backend")
 
@@ -25,12 +27,17 @@ def cultural_tip(request: TipRequest):
 
 @app.post("/safety-check")
 def safety_check(request: LocationRequest):
-    """
-    Called by mobile app every 5-10 minutes.
-    Returns alerts if near a sensitive zone.
-    """
     rules = get_nearby_rules(request.lat, request.lon)
-    return {"alerts": rules if rules else "You are in a safe zone."}
+    # Check for polygons from OSM
+    polygons = get_restricted_polygons(request.lat, request.lon)
+    # Check for emergency alerts from GDACS
+    disasters = get_emergency_alerts(request.lat, request.lon)
+    
+    return {
+        "alerts": rules if rules else "You are in a safe zone.",
+        "osm_restricted_polygons": polygons,
+        "emergency_disasters": disasters
+    }
 
 class ImageQuery(BaseModel):
     image_base64: str
@@ -47,3 +54,11 @@ def scan_menu(query: ImageQuery):
 @app.post("/nearby-places")
 def get_nearby_places(request: LocationRequest, category: str = "tourist_attraction"):
     return {"places": search_nearby_places(request.lat, request.lon, category)}
+
+@app.post("/currency-swap")
+def currency_swap(base: str = "AED", target: str = "KZT"):
+    return {"rate": get_exchange_rate(base, target)}
+
+@app.post("/voice-whisper")
+def voice_whisper(text: str):
+    return {"audio": text_to_speech(text)}
