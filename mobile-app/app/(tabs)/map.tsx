@@ -1,12 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Platform } from 'react-native';
-import MapView, { Marker, Circle, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
+
+// Lazy load MapView because it crashes in Expo Go / Web
+let MapView: any = View; // Fallback
+let Marker: any = View;
+let Circle: any = View;
+let PROVIDER_GOOGLE: any = null;
+
+if (Platform.OS !== 'web') {
+  try {
+     const Maps = require('react-native-maps');
+     MapView = Maps.default;
+     Marker = Maps.Marker;
+     Circle = Maps.Circle;
+     PROVIDER_GOOGLE = Maps.PROVIDER_GOOGLE;
+  } catch (e) {
+     console.log("Maps not supported in this environment");
+  }
+}
 
 export default function MapScreen() {
   const [location, setLocation] = useState<any>(null);
 
-  // Restricted Zones for visualization
   const zones = [
     { id: 1, title: "Dubai Airport", lat: 25.2532, lon: 55.3657, radius: 1000 },
     { id: 2, title: "Mosque Area", lat: 24.8088, lon: 55.1542, radius: 1000 },
@@ -22,6 +38,17 @@ export default function MapScreen() {
       setLocation(loc);
     })();
   }, []);
+
+  if (Platform.OS === 'web' || MapView === View) {
+      return (
+          <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+              <Text style={{ color: '#fff', fontSize: 18, textAlign: 'center', padding: 20 }}>
+                  Interactive Map requires a Development Build.{"\n"}{"\n"}
+                  Check the 'Home' tab for live GPS alerts!
+              </Text>
+          </View>
+      )
+  }
 
   return (
     <View style={styles.container}>
@@ -63,6 +90,7 @@ export default function MapScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#0F172A',
   },
   map: {
     width: '100%',

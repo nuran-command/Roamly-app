@@ -5,8 +5,13 @@ import * as Location from 'expo-location';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Device from 'expo-device';
-import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
+
+// Lazy load notifications because they crash on Web/Expo Go standard
+let Notifications: any = null;
+if (Platform.OS !== 'web') {
+  Notifications = require('expo-notifications');
+}
 
 export default function CurrentStatusScreen() {
   const [status, setStatus] = useState("Scanning environment...");
@@ -27,10 +32,12 @@ export default function CurrentStatusScreen() {
       let loc = await Location.getCurrentPositionAsync({});
       setLocation(loc);
       
-      // 2. Firebase Notifications Setup
-      registerForPushNotificationsAsync().then(token => {
-          if (token) sendTokenToBackend(token);
-      });
+      // 2. Firebase Notifications Setup (Safe)
+      if (Platform.OS !== 'web' && Device.isDevice) {
+        registerForPushNotificationsAsync().then(token => {
+            if (token) sendTokenToBackend(token);
+        });
+      }
 
       const cached = await AsyncStorage.getItem(`cached_status`);
       if (cached) {
@@ -48,7 +55,7 @@ export default function CurrentStatusScreen() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: "test-user@roamly.com", // Placeholder until login works
+          email: "test-user@roamly.com", // Placeholder
           token: token
         })
       });
@@ -58,7 +65,8 @@ export default function CurrentStatusScreen() {
   }
 
   async function registerForPushNotificationsAsync() {
-    if (Platform.OS === 'web' || !Device.isDevice) return;
+    if (!Notifications || !Device.isDevice) return;
+    
     const { status: existingStatus } = await Notifications.getPermissionsAsync();
     let finalStatus = existingStatus;
     if (existingStatus !== 'granted') {
@@ -67,7 +75,6 @@ export default function CurrentStatusScreen() {
     }
     if (finalStatus !== 'granted') return;
     
-    // Get project ID from app.json
     const projectId = Constants.expoConfig?.extra?.eas?.projectId ?? Constants.expoConfig?.owner;
     const token = (await Notifications.getExpoPushTokenAsync({ projectId })).data;
     return token;
@@ -110,19 +117,12 @@ export default function CurrentStatusScreen() {
           );
       }
       
-      if (data.ai_insight && data.ai_insight.tip && data.status !== "RESTRICTED") {
-          setErrorMsg("AI: " + data.ai_insight.tip);
-      } else {
-          setErrorMsg(null);
-      }
-      
     } catch (error) {
       setIsOffline(true);
       const cached = await AsyncStorage.getItem('cached_status');
       if (cached) {
           const parsed = JSON.parse(cached);
           setStatus(parsed.alert + " (Offline Mode)");
-          setErrorMsg("Connect to network for real-time AI updates.");
       } else {
           setStatus("Error connecting to backend");
       }
