@@ -3,8 +3,17 @@ from pydantic import BaseModel
 from app.engine import get_cultural_tip, get_nearby_rules, scan_image_with_gemini, search_nearby_places
 from app.utilities import get_exchange_rate, get_emergency_alerts
 from app.osm_service import get_restricted_polygons
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Roamly AI Backend")
+
+# ENABLE CORS for Mobile Access
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class TipRequest(BaseModel):
     query: str
@@ -53,6 +62,7 @@ def scan_menu(query: ImageQuery):
 def get_nearby_places(request: LocationRequest, category: str = "tourist_attraction"):
     return {"places": search_nearby_places(request.lat, request.lon, category)}
 
-@app.post("/currency-swap")
-def currency_swap(base: str = "AED", target: str = "KZT"):
+# CHANGE TO GET FOR EASIER FETCHING
+@app.get("/currency-swap")
+def currency_swap(base: str = "USD", target: str = "KZT"):
     return {"rate": get_exchange_rate(base, target)}

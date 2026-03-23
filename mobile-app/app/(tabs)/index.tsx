@@ -62,7 +62,6 @@ export default function CurrentStatusScreen() {
     setLoading(true);
     setStatus("Analysing surroundings...");
     try {
-      // COORDINATE FALLBACK
       const lat = location?.coords?.latitude || 51.1255;
       const lon = location?.coords?.longitude || 71.4705;
 
@@ -74,7 +73,7 @@ export default function CurrentStatusScreen() {
       });
       const data = await res.json();
       
-      // 2. Currency Scan (Python)
+      // 2. Currency Scan
       fetchCurrency();
 
       setStatus(data.alerts || "Environment is safe.");
@@ -82,10 +81,8 @@ export default function CurrentStatusScreen() {
       setIsOffline(false);
 
       await Storage.setItem('cached_status', JSON.stringify({ alert: data.alerts, timestamp: new Date().getTime() }));
-      
     } catch (error) {
       setIsOffline(true);
-      setStatus("Backends offline. Using cached data.");
     } finally {
       if (mounted.current) setLoading(false);
     }
@@ -94,16 +91,16 @@ export default function CurrentStatusScreen() {
   const fetchCurrency = async () => {
      try {
         const pair = country.includes("Kazakhstan") ? "KZT" : "AED";
-        const xres = await fetch(`http://${BASE_IP}:8000/currency-swap?base=USD&target=${pair}`, { method: 'POST' });
+        // FETCHING AS GET NOW
+        const xres = await fetch(`http://${BASE_IP}:8000/currency-swap?base=USD&target=${pair}`);
         const xdata = await xres.json();
         const rate = xdata.rate?.[pair]?.rate_for_amount;
         if (rate && mounted.current) setExchangeRate(rate.toFixed(2));
       } catch (e) {
-        console.log("Currency link failed on IP:", BASE_IP);
+        console.log("Currency link failed");
       }
   };
 
-  // Auto-fetch currency on load
   useEffect(() => {
     if (exchangeRate === null) fetchCurrency();
   }, [country]);
@@ -111,7 +108,6 @@ export default function CurrentStatusScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
-        {/* Top Intelligence Bar */}
         <View style={styles.intelBar}>
           <View style={styles.row}>
             <Text style={{ fontSize: 18 }}>{country.includes("UAE") ? "🇦🇪" : "🇰🇿"}</Text>
@@ -171,7 +167,7 @@ export default function CurrentStatusScreen() {
              activeOpacity={0.8}
            >
               <Ionicons name="scan-outline" size={32} color="#fff" />
-              <Text style={styles.gridBtnText}>{language === "Russian" ? "Документы" : "Scanner"}</Text>
+              <Text style={styles.gridBtnText}>{language === "Russian" ? "Картинки" : "Scanner"}</Text>
            </TouchableOpacity>
         </View>
 
