@@ -11,21 +11,25 @@ export default function SettingsScreen() {
 
     useEffect(() => {
         (async () => {
-            const savedProfile = await Storage.getItem('user_profile');
-            const savedLang = await Storage.getItem('user_lang');
-            if (savedProfile) setProfile(savedProfile);
-            if (savedLang) setLanguage(savedLang);
+            try {
+                const savedProfile = await Storage.getItem('user_profile');
+                const savedLang = await Storage.getItem('user_lang');
+                if (savedProfile) setProfile(savedProfile);
+                if (savedLang) setLanguage(savedLang);
+            } catch (e) {}
         })();
     }, []);
 
     const saveSettings = async (type: string, value: string) => {
-        if (type === 'profile') {
-            setProfile(value);
-            await Storage.setItem('user_profile', value);
-        } else {
-            setLanguage(value);
-            await Storage.setItem('user_lang', value);
-        }
+        try {
+            if (type === 'profile') {
+                setProfile(value);
+                await Storage.setItem('user_profile', value);
+            } else {
+                setLanguage(value);
+                await Storage.setItem('user_lang', value);
+            }
+        } catch (e) {}
     };
 
     const profiles = ["Solo Tourist", "Business", "Student", "Family"];
@@ -38,7 +42,7 @@ export default function SettingsScreen() {
 
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Traveler Profile</Text>
-                    <Text style={styles.sectionDesc}>This changes the tone and level of detail of the AI Guardian's advice.</Text>
+                    <Text style={styles.sectionDesc}>Tailors the AI's safety and cultural advice level.</Text>
                     <View style={styles.grid}>
                         {profiles.map(p => (
                             <TouchableOpacity 
@@ -67,25 +71,8 @@ export default function SettingsScreen() {
                     </View>
                 </View>
 
-                <View style={styles.section}>
-                    <TouchableOpacity 
-                        style={styles.toggleRow} 
-                        onPress={() => setAutoTranslate(!autoTranslate)}
-                    >
-                        <View>
-                            <Text style={styles.sectionTitle}>Automatic Geo-Translation</Text>
-                            <Text style={styles.sectionDesc}>Detects country and translates tips instantly.</Text>
-                        </View>
-                        <Ionicons 
-                            name={autoTranslate ? "checkbox" : "square-outline"} 
-                            size={24} 
-                            color={autoTranslate ? "#3B82F6" : "#64748B"} 
-                        />
-                    </TouchableOpacity>
-                </View>
-
                 <View style={styles.footer}>
-                     <Text style={styles.footerText}>Roamly AI Guardian v1.0.0</Text>
+                     <Text style={styles.footerText}>Roamly v1.0.0 (Protected Storage)</Text>
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -104,7 +91,6 @@ const styles = StyleSheet.create({
     btnActive: { backgroundColor: '#3B82F6', borderColor: '#3B82F6' },
     btnText: { color: '#94A3B8', fontWeight: 'bold' },
     btnTextActive: { color: '#fff' },
-    toggleRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
     footer: { marginTop: 50, alignItems: 'center' },
     footerText: { color: '#475569', fontSize: 12 }
 });

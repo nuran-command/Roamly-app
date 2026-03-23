@@ -13,12 +13,11 @@ export default function CurrentStatusScreen() {
   const [vibe, setVibe] = useState("Normal Baseline");
   const [loading, setLoading] = useState(false);
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
-  const [isOffline, setIsOffline] = useState(false);
-  const [disasters, setDisasters] = useState<any[]>([]);
   const [exchangeRate, setExchangeRate] = useState<string | null>(null);
   const [country, setCountry] = useState("Kazakhstan (Demo)");
   const [language, setLanguage] = useState("Russian");
 
+  // REPLACED WITH YOUR NETWORK IP (192.168.0.5)
   const BASE_IP = '192.168.0.5'; 
 
   useEffect(() => {
@@ -41,37 +40,25 @@ export default function CurrentStatusScreen() {
   const fetchCurrency = async () => {
      try {
         const pair = country.includes("Kazakhstan") ? "KZT" : "AED";
+        // Ensure this points to Python (8000)
         const xres = await fetch(`http://${BASE_IP}:8000/currency-swap?base=USD&target=${pair}`);
         const xdata = await xres.json();
         const rate = xdata.rate?.[pair]?.rate_for_amount;
         if (rate && mounted.current) setExchangeRate(rate.toFixed(2));
-      } catch (e) {}
-  };
-
-  const getHospitals = async () => {
-      if (!location) return;
-      try {
-          const res = await fetch(`http://${BASE_IP}:8000/safe-havens`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ lat: location.coords.latitude, lon: location.coords.longitude })
-          });
-          const data = await res.json();
-          const first_hosp = data.hospitals?.[0]?.name || "Nearest Hospital";
-          Alert.alert("🚨 SAFE HAVENS FOUND", `Nearest Medical: ${first_hosp}.\n\nNavigation starting...`, [
-              { text: "View on Map", onPress: () => router.push('/map') },
-              { text: "Dismiss" }
-          ]);
-      } catch (e) {}
+      } catch (e) {
+        console.log("Currency link failed on", BASE_IP);
+      }
   };
 
   const checkStatus = async () => {
     setLoading(true);
     setStatus("Analysing surroundings...");
     try {
+      if (!location) { setStatus("GPS Offline. Using Mock."); }
       const lat = location?.coords?.latitude || 51.1255;
       const lon = location?.coords?.longitude || 71.4705;
 
+      // Ensure this points to Python (8000)
       const res = await fetch(`http://${BASE_IP}:8000/safety-check`, { 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -83,11 +70,8 @@ export default function CurrentStatusScreen() {
       fetchCurrency();
 
       setStatus(data.alerts && typeof data.alerts !== 'string' ? "Zone Rules Active." : data.alerts);
-      setDisasters(data.emergency_disasters || []);
-      setIsOffline(false);
     } catch (error) {
-      setIsOffline(true);
-      setStatus("Intelligence Service Offline.");
+      console.log("Python Backend Offline on", BASE_IP);
     } finally {
       if (mounted.current) setLoading(false);
     }
@@ -102,48 +86,38 @@ export default function CurrentStatusScreen() {
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.intelBar}>
           <Text style={styles.intelText}>📍 {country}</Text>
-          <Text style={styles.intelText}>💰 1 USD ≈ {exchangeRate || "??.??"} {country.includes("Kazakhstan") ? "KZT" : "AED"}</Text>
+          <Text style={styles.intelText}>💰 1 USD ≈ {exchangeRate || "--.--"} {country.includes("Kazakhstan") ? "KZT" : "AED"}</Text>
         </View>
 
         <View style={styles.header}>
            <Ionicons name="shield-checkmark" size={60} color="#3B82F6" />
           <Text style={styles.title}>Roamly</Text>
-          <Text style={styles.vibeMeter}>Vibe: {vibe}</Text>
+          <Text style={styles.vibeMeter}>🔥 Status: {vibe}</Text>
         </View>
 
-        {disasters.length > 0 && (
-          <View style={styles.disasterBox}>
-            <Text style={styles.disasterTitle}>📢 Regional Alert</Text>
-            {disasters.map((d, i) => (
-              <Text key={i} style={styles.disasterText}>• {d.name}</Text>
-            ))}
-          </View>
-        )}
-        
-        <View style={[styles.statusBox, isOffline && styles.offlineBox]}>
-          <Text style={styles.statusLabel}>Guardian Insights</Text>
+        <View style={styles.statusBox}>
+          <Text style={styles.statusLabel}>Guardian Context</Text>
           <Text style={styles.statusValue}>{status}</Text>
         </View>
 
         <TouchableOpacity style={styles.scanButton} onPress={checkStatus} disabled={loading}>
           <Ionicons name="radio-outline" size={24} color="#fff" style={{ marginRight: 10 }} />
-          <Text style={styles.scanButtonText}>{loading ? "Analysing..." : "Scan Surroundings"}</Text>
+          <Text style={styles.scanButtonText}>{loading ? "Pinging Grid..." : "Scan Surroundings"}</Text>
         </TouchableOpacity>
 
+        {/* Action Grid */}
         <View style={styles.gridContainer}>
            <TouchableOpacity 
              style={styles.gridBtn} 
              onPress={() => router.push('/chat')}
-             activeOpacity={0.8}
            >
               <Ionicons name="chatbubbles-outline" size={32} color="#fff" />
-              <Text style={styles.gridBtnText}>Ask Guru</Text>
+              <Text style={styles.gridBtnText}>Ask AI</Text>
            </TouchableOpacity>
 
            <TouchableOpacity 
              style={[styles.gridBtn, { backgroundColor: '#B91C1C' }]} 
-             onPress={getHospitals}
-             activeOpacity={0.8}
+             onPress={() => router.push('/map')}
            >
               <Ionicons name="medical" size={32} color="#fff" />
               <Text style={styles.gridBtnText}>Safe Havens</Text>
@@ -151,11 +125,11 @@ export default function CurrentStatusScreen() {
         </View>
 
         <TouchableOpacity 
-            style={styles.secondaryBtn} 
-            onPress={() => router.push('/scanner')}
+            style={styles.sosButton} 
+            onPress={() => Alert.alert("🆘 EMGENCY ALERT", "Sending location to local SOS...", [{ text: "Call Police", onPress: () => {} }, { text: "Cancel" }])}
         >
-            <Ionicons name="camera-outline" size={24} color="#94A3B8" />
-            <Text style={styles.secondaryBtnText}>AI Gastro Health Guard</Text>
+            <Ionicons name="flashlight" size={24} color="#F87171" style={{ marginRight: 10 }} />
+            <Text style={styles.sosText}>Activate High-Alert SOS</Text>
         </TouchableOpacity>
 
       </ScrollView>
@@ -171,11 +145,7 @@ const styles = StyleSheet.create({
   header: { alignItems: 'center', marginBottom: 30 },
   title: { fontSize: 32, fontWeight: 'bold', color: '#fff', marginTop: 10 },
   vibeMeter: { color: '#3B82F6', fontSize: 14, fontWeight: 'bold', marginTop: 5, textTransform: 'uppercase' },
-  disasterBox: { backgroundColor: '#450a0a', width: '100%', padding: 15, borderRadius: 20, marginBottom: 20, borderWidth: 1, borderColor: '#991b1b' },
-  disasterTitle: { color: '#fca5a5', fontWeight: 'bold', fontSize: 12, marginBottom: 8 },
-  disasterText: { color: '#fff', fontSize: 13 },
   statusBox: { backgroundColor: '#1E293B', width: '100%', padding: 25, borderRadius: 25, marginBottom: 25, borderWidth: 1, borderColor: '#334155' },
-  offlineBox: { borderColor: '#B45309' },
   statusLabel: { color: '#94A3B8', fontSize: 11, fontWeight: 'bold', textTransform: 'uppercase', marginBottom: 15 },
   statusValue: { color: '#fff', fontSize: 18, fontWeight: '500', lineHeight: 26 },
   scanButton: { flexDirection: 'row', backgroundColor: '#3B82F6', paddingVertical: 20, borderRadius: 18, width: '100%', alignItems: 'center', justifyContent: 'center', marginBottom: 20 },
@@ -183,6 +153,6 @@ const styles = StyleSheet.create({
   gridContainer: { flexDirection: 'row', justifyContent: 'space-between', width: '100%' },
   gridBtn: { backgroundColor: '#8B5CF6', flex: 0.48, height: 115, borderRadius: 22, justifyContent: 'center', alignItems: 'center' },
   gridBtnText: { color: '#fff', fontWeight: 'bold', marginTop: 12, fontSize: 14 },
-  secondaryBtn: { flexDirection: 'row', marginTop: 30, backgroundColor: '#1E293B', width: '100%', padding: 15, borderRadius: 15, alignItems: 'center', justifyContent: 'center', borderStyle: 'dotted', borderWidth: 1, borderColor: '#334155' },
-  secondaryBtnText: { color: '#94A3B8', fontWeight: '600', marginLeft: 10 }
+  sosButton: { flexDirection: 'row', marginTop: 30, backgroundColor: 'rgba(239, 68, 68, 0.1)', width: '100%', padding: 20, borderRadius: 20, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#EF4444' },
+  sosText: { color: '#F87171', fontWeight: 'bold', fontSize: 16 }
 });
