@@ -9,38 +9,48 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 export default function CurrentStatusScreen() {
   const router = useRouter();
   const mounted = useRef(true);
-  const [status, setStatus] = useState("Scanning environment...");
+  const [status, setStatus] = useState("Shield Initializing...");
   const [loading, setLoading] = useState(false);
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
   const [isOffline, setIsOffline] = useState(false);
   const [disasters, setDisasters] = useState<any[]>([]);
   const [exchangeRate, setExchangeRate] = useState<string | null>(null);
-  const [country, setCountry] = useState("Kazakhstan (Demo)");
+  const [country, setCountry] = useState("Kazakhstan (Demo Mode)");
   const [language, setLanguage] = useState("Russian");
 
-  // CHANGE THIS TO YOUR COMPUTER'S IP (Same as Java)
+  // YOUR COMPUTER'S LAN IP (Verify this with 'ifconfig' or 'ipconfig')
   const BASE_IP = '192.168.0.5'; 
 
   useEffect(() => {
     mounted.current = true;
     (async () => {
       try {
-        let { status: gpsStatus } = await Location.requestForegroundPermissionsAsync();
-        if (gpsStatus !== 'granted') return;
+        // Explicitly handle permission and location request
+        let { status: gpsStatus } = await Location.requestForegroundPermissionsAsync().catch(() => ({ status: 'denied' }));
         
-        const loc = await Location.getCurrentPositionAsync({ accuracy: Location.LocationAccuracy.Balanced });
+        if (gpsStatus !== 'granted') {
+           if (mounted.current) setStatus("Location Denied. Using Demo Data.");
+           return;
+        }
+        
+        // Timeout protection for Geolocation
+        const loc = await Promise.race([
+            Location.getCurrentPositionAsync({ accuracy: Location.LocationAccuracy.Balanced }),
+            new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Timeout")), 5000))
+        ]).catch(() => null);
+
         if (loc && mounted.current) {
-            setLocation(loc);
+            setLocation(loc as Location.LocationObject);
             detectCountry(loc.coords.latitude);
         }
 
         const cached = await Storage.getItem(`cached_status`);
         if (cached && mounted.current) {
             const parsed = JSON.parse(cached);
-            setStatus(parsed.alert + " (Cached)");
+            setStatus(parsed.alert + " (Syncing...)");
         }
       } catch (e) {
-        console.log("Startup fail - using fallback");
+        console.log("Location detection failure:", e);
       }
     })();
     return () => { mounted.current = false; };
@@ -54,18 +64,32 @@ export default function CurrentStatusScreen() {
         setCountry("UAE");
         setLanguage("English");
     } else {
-        setCountry("International");
+        setCountry("International Explorer");
     }
+  };
+
+  const fetchCurrency = async () => {
+     try {
+        const pair = country.includes("Kazakhstan") ? "KZT" : "AED";
+        // Ensure we are using correct Python URL
+        const xres = await fetch(`http://${BASE_IP}:8000/currency-swap?base=USD&target=${pair}`);
+        if (!xres.ok) throw new Error("API 404 or Down");
+        const xdata = await xres.json();
+        const rate = xdata.rate?.[pair]?.rate_for_amount;
+        if (rate && mounted.current) setExchangeRate(rate.toFixed(2));
+      } catch (e) {
+        console.log("Python Currency API Not Reachable on", BASE_IP);
+      }
   };
 
   const checkStatus = async () => {
     setLoading(true);
-    setStatus("Analysing surroundings...");
+    setStatus("Scanning surroundings...");
     try {
+      // Fallback coordinates for Astana if GPS failed
       const lat = location?.coords?.latitude || 51.1255;
       const lon = location?.coords?.longitude || 71.4705;
 
-      // 1. Safety Scan (Java)
       const res = await fetch(`http://${BASE_IP}:8080/api/ai/safety-check`, { 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -73,32 +97,19 @@ export default function CurrentStatusScreen() {
       });
       const data = await res.json();
       
-      // 2. Currency Scan
       fetchCurrency();
 
-      setStatus(data.alerts || "Environment is safe.");
+      setStatus(data.alerts || "Zone is safe.");
       setDisasters(data.emergency_disasters || []);
       setIsOffline(false);
 
       await Storage.setItem('cached_status', JSON.stringify({ alert: data.alerts, timestamp: new Date().getTime() }));
     } catch (error) {
       setIsOffline(true);
+      setStatus("Intelligence Service Offline.");
     } finally {
       if (mounted.current) setLoading(false);
     }
-  };
-
-  const fetchCurrency = async () => {
-     try {
-        const pair = country.includes("Kazakhstan") ? "KZT" : "AED";
-        // FETCHING AS GET NOW
-        const xres = await fetch(`http://${BASE_IP}:8000/currency-swap?base=USD&target=${pair}`);
-        const xdata = await xres.json();
-        const rate = xdata.rate?.[pair]?.rate_for_amount;
-        if (rate && mounted.current) setExchangeRate(rate.toFixed(2));
-      } catch (e) {
-        console.log("Currency link failed");
-      }
   };
 
   useEffect(() => {
@@ -121,12 +132,12 @@ export default function CurrentStatusScreen() {
         <View style={styles.header}>
            <Ionicons name="shield-checkmark" size={60} color="#3B82F6" />
           <Text style={styles.title}>Roamly</Text>
-          <Text style={styles.subtitle}>Autonomous Travel Guardian</Text>
+          <Text style={styles.subtitle}>Unified Safety & Discovery</Text>
         </View>
 
         {disasters.length > 0 && (
           <View style={styles.disasterBox}>
-            <Text style={styles.disasterTitle}>📢 Regional Safety Alert</Text>
+            <Text style={styles.disasterTitle}>📢 Regional Emergency Alert</Text>
             {disasters.map((d, i) => (
               <Text key={i} style={styles.disasterText}>• {d.name} ({d.severity})</Text>
             ))}
@@ -134,10 +145,10 @@ export default function CurrentStatusScreen() {
         )}
         
         <View style={[styles.statusBox, isOffline && styles.offlineBox]}>
-          <Text style={styles.statusLabel}>Live Intelligence</Text>
+          <Text style={styles.statusLabel}>Guardian Status</Text>
           <Text style={styles.statusValue}>{status}</Text>
           <View style={styles.languageBadge}>
-             <Text style={styles.languageBadgeText}>Language Active: {language}</Text>
+             <Text style={styles.languageBadgeText}>Listening: {language}</Text>
           </View>
         </View>
 
