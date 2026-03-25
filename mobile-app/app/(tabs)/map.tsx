@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Platform, TouchableOpacity } from 'react-native
 import * as Location from 'expo-location';
 import { Ionicons } from '@expo/vector-icons';
 
-// Lazy load MapView fallback
+// Native Map Support
 let MapView: any = View;
 let Marker: any = View;
 let Circle: any = View;
@@ -34,11 +34,13 @@ export default function MapScreen() {
 
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
+      let { status } = await Location.requestForegroundPermissionsAsync().catch(() => ({ status: 'denied' }));
       if (status !== 'granted') return;
-      let loc = await Location.getCurrentPositionAsync({});
-      setLocation(loc);
-      fetchSafeHavens(loc.coords.latitude, loc.coords.longitude);
+      let loc = await Location.getCurrentPositionAsync({}).catch(() => null);
+      if (loc) {
+          setLocation(loc);
+          fetchSafeHavens(loc.coords.latitude, loc.coords.longitude);
+      }
     })();
   }, []);
 
@@ -63,17 +65,31 @@ export default function MapScreen() {
     }
   };
 
-  if (Platform.OS === 'web' || MapView === View) {
+  // WEB MODE: Use an Iframe (OpenStreetMap)
+  if (Platform.OS === 'web') {
+      const lat = location?.coords?.latitude || 51.1255;
+      const lon = location?.coords?.longitude || 71.4705;
+      // OSM Embed URL
+      const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${lon-0.01},${lat-0.01},${lon+0.01},${lat+0.01}&layer=mapnik&marker=${lat},${lon}`;
+      
       return (
-          <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
-              <Text style={{ color: '#fff', fontSize: 18, textAlign: 'center', padding: 20 }}>
-                  Map View is offline in Web mode.{"\n"}{"\n"}
-                  Switch to Expo Go or a Development Build to see interactive zones.
-              </Text>
+          <View style={styles.container}>
+              <View style={styles.webHeader}>
+                  <Text style={styles.webHeaderText}>🌍 Live Global Explorer (Web Mode)</Text>
+              </View>
+              <iframe 
+                src={mapUrl} 
+                style={{ width: '100%', height: '100%', border: 'none' }}
+                title="Roamly Web Map"
+              />
+              <View style={styles.overlay}>
+                   <Text style={styles.legendText}>📍 Current Location: {lat.toFixed(4)}, {lon.toFixed(4)}</Text>
+              </View>
           </View>
-      )
+      );
   }
 
+  // NATIVE MODE: Use react-native-maps
   return (
     <View style={styles.container}>
       <MapView
@@ -87,7 +103,6 @@ export default function MapScreen() {
         }}
         showsUserLocation={true}
       >
-        {/* Restricted Red Zones */}
         {restrictedZones.map(zone => (
           <React.Fragment key={zone.id}>
             <Marker coordinate={{ latitude: zone.lat, longitude: zone.lon }} pinColor="red" title={zone.title} />
@@ -95,7 +110,6 @@ export default function MapScreen() {
           </React.Fragment>
         ))}
 
-        {/* Dynamic Safe Havens (Blue/Green) */}
         {safeHavens.map((haven, i) => (
            <Marker 
              key={i} 
@@ -108,25 +122,13 @@ export default function MapScreen() {
       </MapView>
 
       <View style={styles.overlay}>
-        <View style={styles.legendRow}>
-             <View style={[styles.dot, { backgroundColor: 'red' }]} />
-             <Text style={styles.legendText}>Restricted Zones</Text>
-        </View>
-        <View style={styles.legendRow}>
-             <View style={[styles.dot, { backgroundColor: 'blue' }]} />
-             <Text style={styles.legendText}>Medical Havens</Text>
-        </View>
-        <View style={styles.legendRow}>
-             <View style={[styles.dot, { backgroundColor: 'green' }]} />
-             <Text style={styles.legendText}>Police Contacts</Text>
-        </View>
+        <View style={styles.legendRow}><View style={[styles.dot, { backgroundColor: 'red' }]} /><Text style={styles.legendText}>Danger Zones</Text></View>
+        <View style={styles.legendRow}><View style={[styles.dot, { backgroundColor: 'blue' }]} /><Text style={styles.legendText}>Medical Havens</Text></View>
+        <View style={styles.legendRow}><View style={[styles.dot, { backgroundColor: 'green' }]} /><Text style={styles.legendText}>Police Contacts</Text></View>
       </View>
       
-      <TouchableOpacity 
-          style={styles.refreshBtn} 
-          onPress={() => location && fetchSafeHavens(location.coords.latitude, location.coords.longitude)}
-      >
-          <Ionicons name="refresh" size={24} color="#fff" />
+      <TouchableOpacity style={styles.refreshBtn} onPress={() => location && fetchSafeHavens(location.coords.latitude, location.coords.longitude)}>
+          <Ionicons name="location" size={24} color="#fff" />
       </TouchableOpacity>
     </View>
   );
@@ -135,6 +137,8 @@ export default function MapScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#0F172A' },
   map: { width: '100%', height: '100%' },
+  webHeader: { padding: 20, backgroundColor: '#1E293B', alignItems: 'center', borderBottomWidth: 1, borderColor: '#334155' },
+  webHeaderText: { color: '#fff', fontWeight: 'bold', fontSize: 16 },
   overlay: { position: 'absolute', bottom: 30, left: 20, backgroundColor: 'rgba(15, 23, 42, 0.9)', padding: 15, borderRadius: 20, borderWidth: 1, borderColor: '#334155' },
   legendRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 5 },
   dot: { width: 10, height: 10, borderRadius: 5, marginRight: 10 },
