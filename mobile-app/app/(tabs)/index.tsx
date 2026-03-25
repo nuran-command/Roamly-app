@@ -4,8 +4,9 @@ import { useRouter } from 'expo-router';
 import * as Location from 'expo-location';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { NotificationManager } from '../../utils/notificationManager';
-import { SafetyManager, Rule } from '../../utils/safetyManager';
+import { NotificationManager } from '../utils/notificationManager';
+import { SafetyManager, Rule } from '../utils/safetyManager';
+import { BackgroundTaskManager } from '../utils/backgroundTask';
 
 export default function CurrentStatusScreen() {
   const router = useRouter();
@@ -29,6 +30,9 @@ export default function CurrentStatusScreen() {
         // Setup Notifications
         await NotificationManager.registerForPushNotificationsAsync();
 
+        // Setup 5-Minute Background Guardian Pulse
+        await BackgroundTaskManager.startBackgroundPulse();
+
         let { status: gpsStatus } = await Location.requestForegroundPermissionsAsync().catch(() => ({ status: 'denied' }));
         if (gpsStatus !== 'granted') return;
         
@@ -41,10 +45,15 @@ export default function CurrentStatusScreen() {
                 longitude: loc.coords.longitude 
             });
             if (reverse.length > 0 && reverse[0].country) {
-                const detectedCountry = reverse[0].country;
-                if (detectedCountry === "Kazakhstan" || detectedCountry === "United Arab Emirates") {
-                   setCountry(detectedCountry);
-                   SafetyManager.syncRules(detectedCountry);
+                const detCountry = reverse[0].country;
+                if (detCountry.includes("United Arab Emirates") || detCountry.includes("Emirates")) {
+                   setCountry("UAE");
+                   setLanguage("Arabic");
+                   SafetyManager.syncRules("UAE");
+                } else if (detCountry.includes("Kazakhstan")) {
+                   setCountry("Kazakhstan");
+                   setLanguage("Russian");
+                   SafetyManager.syncRules("Kazakhstan");
                 }
             }
         }
