@@ -11,7 +11,7 @@
       "location": {
         "name": "Qasr Al Watan / Presidential Palace Area",
         "latitude": 24.4622,
-        "longitude": 54.3000
+        "longitude": 54.3
       }
     },
     {
@@ -30,8 +30,8 @@
       "penalty": "Fine up to 5,000 AED and up to 6 months in prison + mandatory deportation for non-nationals. Legal basis: Sharjah Alcohol Prohibition Law.",
       "location": {
         "name": "Dubai-Sharjah Border",
-        "latitude": 25.2970,
-        "longitude": 55.3750
+        "latitude": 25.297,
+        "longitude": 55.375
       }
     },
     {
@@ -58,7 +58,7 @@
       "category": "Social - Indecency",
       "urgency": 2,
       "trigger_zone": "Public Areas / Beaches",
-      "rule": "Public displays of affection (PDA) — including kissing or suggestive behavior — are considered an 'outrage on public decency.' Holding hands for married couples is generally fine, but excessive intimacy in public can lead to arrest if reported by residents.",
+      "rule": "Public displays of affection (PDA) \u2014 including kissing or suggestive behavior \u2014 are considered an 'outrage on public decency.' Holding hands for married couples is generally fine, but excessive intimacy in public can lead to arrest if reported by residents.",
       "penalty": "Fine of 5,000 AED and possible imprisonment + deportation. Legal basis: Article 358 of UAE Penal Code.",
       "location": null
     },
@@ -134,7 +134,7 @@
       "penalty": "Eating: 100 AED. Sleeping: 300 AED. Wrong Cabin: 100 AED. Legal basis: RTA Metro Regulations.",
       "location": {
         "name": "Burjuman Metro Station",
-        "latitude": 25.2530,
+        "latitude": 25.253,
         "longitude": 55.3032
       }
     },
@@ -192,6 +192,590 @@
         "name": "Dubai Airport T3 Customs",
         "latitude": 25.2532,
         "longitude": 55.3657
+      }
+    },
+    {
+      "category": "Identity",
+      "urgency": 1,
+      "trigger_zone": "Public Areas",
+      "rule": "Tourists must carry passport; residents must carry Emirates ID. Police can request it anytime.",
+      "penalty": "Detention until identity confirmed.",
+      "location": null
+    },
+    {
+      "category": "Alcohol - Sharjah",
+      "urgency": 1,
+      "trigger_zone": "Sharjah Emirate",
+      "rule": "Alcohol possession or transport in Sharjah is illegal, even sealed bottles.",
+      "penalty": "Fine up to 5,000 AED, prison, deportation.",
+      "location": {
+        "name": "Dubai-Sharjah Border",
+        "latitude": 25.297,
+        "longitude": 55.375
+      }
+    },
+    {
+      "category": "Ramadan",
+      "urgency": 1,
+      "trigger_zone": "Public (During Ramadan)",
+      "rule": "Eating, drinking, or smoking in public during daylight hours is prohibited.",
+      "penalty": "Fine up to 2,000 AED or imprisonment.",
+      "location": null
+    },
+    {
+      "category": "Drugs",
+      "urgency": 1,
+      "trigger_zone": "Airport / Public",
+      "rule": "Zero tolerance for drugs. Even trace amounts can result in penalties.",
+      "penalty": "Fines, deportation, or life imprisonment for trafficking.",
+      "location": {
+        "name": "Dubai International Airport",
+        "latitude": 25.2532,
+        "longitude": 55.3657
+      }
+    },
+    {
+      "category": "Photography - People",
+      "urgency": 1,
+      "trigger_zone": "Public",
+      "rule": "Taking photos of people without consent is illegal, especially women and children.",
+      "penalty": "Fine up to 500,000 AED and imprisonment.",
+      "location": null
+    },
+    {
+      "category": "Digital - Privacy",
+      "urgency": 1,
+      "trigger_zone": "Online",
+      "rule": "Insulting messages, threats, or offensive content online are criminal offenses.",
+      "penalty": "Fine up to 500,000 AED + deportation.",
+      "location": null
+    },
+    {
+      "category": "Charity",
+      "urgency": 1,
+      "trigger_zone": "Online / Public",
+      "rule": "Fundraising without government approval is illegal.",
+      "penalty": "Fine up to 500,000 AED + imprisonment.",
+      "location": null
+    },
+    {
+      "category": "Drones",
+      "urgency": 1,
+      "trigger_zone": "Urban Areas",
+      "rule": "Recreational drone use is restricted; permits required.",
+      "penalty": "Fine from 50,000 AED + prison.",
+      "location": null
+    },
+    {
+      "category": "Health - Pharmaceuticals",
+      "urgency": 1,
+      "trigger_zone": "Airport",
+      "rule": "Controlled medicines require prior approval and prescription.",
+      "penalty": "Confiscation + arrest.",
+      "location": {
+        "name": "Dubai Airport Customs",
+        "latitude": 25.2532,
+        "longitude": 55.3657
+      }
+    },
+    {
+      "category": "Photography - Accidents",
+      "urgency": 1,
+      "trigger_zone": "Roads",
+      "rule": "Taking photos/videos of accidents or victims is prohibited.",
+      "penalty": "Fine 1,000 AED + legal action.",
+      "location": null
+    },
+    {
+      "category": "Gambling",
+      "urgency": 1,
+      "trigger_zone": "All UAE",
+      "rule": "All forms of gambling are illegal.",
+      "penalty": "Fine up to 20,000 AED or prison.",
+      "location": null
+    },
+    {
+      "category": "Driving - Speeding",
+      "urgency": 2,
+      "trigger_zone": "Highways",
+      "rule": "Excessive speeding (80+ km/h over limit) leads to vehicle impound.",
+      "penalty": "Fines + black points + impoundment.",
+      "location": null
+    },
+    {
+      "category": "Driving - Phone Use",
+      "urgency": 2,
+      "trigger_zone": "Roads",
+      "rule": "Using phone while driving is monitored by cameras.",
+      "penalty": "800 AED + 4 black points.",
+      "location": null
+    },
+    {
+      "category": "Pedestrian",
+      "urgency": 2,
+      "trigger_zone": "Roads",
+      "rule": "Jaywalking outside crossings is fined.",
+      "penalty": "400 AED fine.",
+      "location": null
+    },
+    {
+      "category": "Public Behavior",
+      "urgency": 2,
+      "trigger_zone": "Public",
+      "rule": "Swearing, rude gestures, or aggressive behavior are punishable.",
+      "penalty": "Fine up to 10,000 AED + deportation.",
+      "location": null
+    },
+    {
+      "category": "Dress Code",
+      "urgency": 2,
+      "trigger_zone": "Malls / Mosques",
+      "rule": "Modest clothing required; swimwear only at beaches.",
+      "penalty": "Warning or removal.",
+      "location": {
+        "name": "Sheikh Zayed Grand Mosque",
+        "latitude": 24.4128,
+        "longitude": 54.4749
+      }
+    },
+    {
+      "category": "Environment",
+      "urgency": 2,
+      "trigger_zone": "Beaches / Desert",
+      "rule": "Littering is strictly fined.",
+      "penalty": "500\u20131000 AED fine.",
+      "location": {
+        "name": "JBR Beach",
+        "latitude": 25.0719,
+        "longitude": 55.1319
+      }
+    },
+    {
+      "category": "Social",
+      "urgency": 3,
+      "trigger_zone": "Public",
+      "rule": "Public displays of affection should be minimal.",
+      "penalty": "Warning or fine.",
+      "location": null
+    },
+    {
+      "category": "Public Etiquette",
+      "urgency": 3,
+      "trigger_zone": "Public Transport",
+      "rule": "No eating, drinking, or sleeping in metro.",
+      "penalty": "100\u2013300 AED fine.",
+      "location": {
+        "name": "Burjuman Metro",
+        "latitude": 25.253,
+        "longitude": 55.3032
+      }
+    },
+    {
+      "category": "Cybersecurity - VPN",
+      "urgency": 1,
+      "trigger_zone": "Online",
+      "rule": "Using VPNs to access blocked services or commit crimes is illegal. VPN itself is not banned, but misuse is prosecuted.",
+      "penalty": "Fine up to 2,000,000 AED and possible imprisonment.",
+      "location": null
+    },
+    {
+      "category": "Financial - Debt",
+      "urgency": 1,
+      "trigger_zone": "Banks / Legal",
+      "rule": "Unpaid debts (including credit cards) are criminal offenses. Bounced cheques can lead to travel bans.",
+      "penalty": "Travel ban, fines, or imprisonment.",
+      "location": null
+    },
+    {
+      "category": "Work - Visa",
+      "urgency": 1,
+      "trigger_zone": "Employment",
+      "rule": "Working on a tourist visa is illegal, even freelance or online gigs for local clients.",
+      "penalty": "Fine, deportation, employer penalties.",
+      "location": null
+    },
+    {
+      "category": "Religion",
+      "urgency": 1,
+      "trigger_zone": "Public / Online",
+      "rule": "Disrespecting religion or promoting religious hatred is strictly prohibited.",
+      "penalty": "Heavy fines, imprisonment, deportation.",
+      "location": null
+    },
+    {
+      "category": "LGBTQ+",
+      "urgency": 1,
+      "trigger_zone": "Public",
+      "rule": "Same-sex public displays of affection or promotion of LGBTQ+ content can lead to legal issues.",
+      "penalty": "Detention, fines, deportation.",
+      "location": null
+    },
+    {
+      "category": "Media - Filming",
+      "urgency": 1,
+      "trigger_zone": "Public / Commercial",
+      "rule": "Professional filming or influencer content creation requires permits.",
+      "penalty": "Fines and confiscation of equipment.",
+      "location": null
+    },
+    {
+      "category": "Noise",
+      "urgency": 2,
+      "trigger_zone": "Residential Areas",
+      "rule": "Loud music or parties after permitted hours can result in complaints and fines.",
+      "penalty": "Warning or fines.",
+      "location": null
+    },
+    {
+      "category": "Parking",
+      "urgency": 2,
+      "trigger_zone": "Public Roads",
+      "rule": "Parking in disabled spots without permit or blocking roads is fined.",
+      "penalty": "Fines up to 1,000 AED.",
+      "location": null
+    },
+    {
+      "category": "Taxi / Transport",
+      "urgency": 2,
+      "trigger_zone": "Transport",
+      "rule": "Using unlicensed taxis is illegal. Always use registered apps or RTA taxis.",
+      "penalty": "Fines for drivers and possible issues for passengers.",
+      "location": null
+    },
+    {
+      "category": "Workplace Behavior",
+      "urgency": 2,
+      "trigger_zone": "Offices",
+      "rule": "Insulting coworkers or employers can be treated as a criminal offense.",
+      "penalty": "Fines or legal action.",
+      "location": null
+    },
+    {
+      "category": "Smoking",
+      "urgency": 2,
+      "trigger_zone": "Indoor Public Places",
+      "rule": "Smoking is banned in malls, offices, and many indoor areas.",
+      "penalty": "Fine around 500 AED.",
+      "location": null
+    },
+    {
+      "category": "E-Scooters",
+      "urgency": 2,
+      "trigger_zone": "Roads / Sidewalks",
+      "rule": "E-scooters allowed only in designated zones. Helmets required.",
+      "penalty": "Fines up to 300 AED.",
+      "location": null
+    },
+    {
+      "category": "Beach Behavior",
+      "urgency": 2,
+      "trigger_zone": "Beaches",
+      "rule": "Topless sunbathing is illegal.",
+      "penalty": "Fine or removal.",
+      "location": {
+        "name": "Kite Beach",
+        "latitude": 25.1676,
+        "longitude": 55.2053
+      }
+    },
+    {
+      "category": "Pets",
+      "urgency": 2,
+      "trigger_zone": "Public Areas",
+      "rule": "Dogs must be on leash; some breeds are restricted.",
+      "penalty": "Fines or confiscation.",
+      "location": null
+    },
+    {
+      "category": "Business",
+      "urgency": 1,
+      "trigger_zone": "Commercial",
+      "rule": "Operating a business without license is illegal.",
+      "penalty": "Heavy fines and closure.",
+      "location": null
+    },
+    {
+      "category": "Import - Goods",
+      "urgency": 1,
+      "trigger_zone": "Airport",
+      "rule": "Importing prohibited items (pornography, certain books, weapons) is illegal.",
+      "penalty": "Confiscation + legal action.",
+      "location": {
+        "name": "Dubai Customs",
+        "latitude": 25.2532,
+        "longitude": 55.3657
+      }
+    },
+    {
+      "category": "Money Exchange",
+      "urgency": 2,
+      "trigger_zone": "Financial",
+      "rule": "Use only licensed exchange centers; illegal exchanges are punishable.",
+      "penalty": "Fines or legal action.",
+      "location": null
+    },
+    {
+      "category": "Public Cleanliness",
+      "urgency": 3,
+      "trigger_zone": "Public",
+      "rule": "Spitting in public places is prohibited.",
+      "penalty": "Fine around 500 AED.",
+      "location": null
+    },
+    {
+      "category": "Queue Etiquette",
+      "urgency": 3,
+      "trigger_zone": "Public Services",
+      "rule": "Cutting queues is socially unacceptable and may lead to complaints.",
+      "penalty": "Warning.",
+      "location": null
+    },
+    {
+      "category": "Greetings",
+      "urgency": 3,
+      "trigger_zone": "Social",
+      "rule": "Avoid physical contact with the opposite gender unless initiated.",
+      "penalty": "Cultural offense (no legal penalty).",
+      "location": null
+    },
+    {
+      "category": "Metro - Ticketing",
+      "urgency": 2,
+      "trigger_zone": "Dubai Metro",
+      "rule": "Traveling without a valid Nol card or insufficient balance is a violation.",
+      "penalty": "Fine of 200 AED.",
+      "location": {
+        "name": "Union Metro Station",
+        "latitude": 25.2663,
+        "longitude": 55.3135
+      }
+    },
+    {
+      "category": "Metro - Behavior",
+      "urgency": 3,
+      "trigger_zone": "Dubai Metro",
+      "rule": "Blocking doors or preventing passengers from entering/exiting is prohibited.",
+      "penalty": "Fine of 100 AED.",
+      "location": {
+        "name": "Mall of the Emirates Metro Station",
+        "latitude": 25.118,
+        "longitude": 55.2006
+      }
+    },
+    {
+      "category": "Road Safety - Seatbelt",
+      "urgency": 2,
+      "trigger_zone": "Roads",
+      "rule": "All passengers must wear seatbelts, including rear seats.",
+      "penalty": "400 AED + 4 black points.",
+      "location": {
+        "name": "Sheikh Zayed Road",
+        "latitude": 25.2048,
+        "longitude": 55.2708
+      }
+    },
+    {
+      "category": "Tourist Sites - Climbing",
+      "urgency": 1,
+      "trigger_zone": "Landmarks",
+      "rule": "Climbing on monuments, structures, or restricted areas is prohibited.",
+      "penalty": "Fines and possible detention.",
+      "location": {
+        "name": "Burj Khalifa Area",
+        "latitude": 25.1972,
+        "longitude": 55.2744
+      }
+    },
+    {
+      "category": "Beach Safety",
+      "urgency": 2,
+      "trigger_zone": "Beaches",
+      "rule": "Swimming during red flag conditions is prohibited.",
+      "penalty": "Fine or rescue penalty fees.",
+      "location": {
+        "name": "La Mer Beach",
+        "latitude": 25.2403,
+        "longitude": 55.2595
+      }
+    },
+    {
+      "category": "Public Parks",
+      "urgency": 3,
+      "trigger_zone": "Parks",
+      "rule": "Cycling is allowed only in designated paths.",
+      "penalty": "Warning or small fine.",
+      "location": {
+        "name": "Zabeel Park",
+        "latitude": 25.2304,
+        "longitude": 55.3006
+      }
+    },
+    {
+      "category": "Mosque Etiquette",
+      "urgency": 2,
+      "trigger_zone": "Religious Sites",
+      "rule": "Non-Muslims must follow dress code and visiting hours; loud behavior prohibited.",
+      "penalty": "Removal from site.",
+      "location": {
+        "name": "Jumeirah Mosque",
+        "latitude": 25.2355,
+        "longitude": 55.269
+      }
+    },
+    {
+      "category": "Mall Behavior",
+      "urgency": 3,
+      "trigger_zone": "Shopping Malls",
+      "rule": "Running, shouting, or disruptive behavior is not allowed.",
+      "penalty": "Security warning or removal.",
+      "location": {
+        "name": "Dubai Mall",
+        "latitude": 25.1975,
+        "longitude": 55.2796
+      }
+    },
+    {
+      "category": "Taxi Conduct",
+      "urgency": 2,
+      "trigger_zone": "Transport",
+      "rule": "Refusing to pay taxi fare is a legal offense.",
+      "penalty": "Fine or police involvement.",
+      "location": {
+        "name": "Dubai Marina",
+        "latitude": 25.08,
+        "longitude": 55.14
+      }
+    },
+    {
+      "category": "Fishing",
+      "urgency": 2,
+      "trigger_zone": "Coastal Areas",
+      "rule": "Fishing requires a permit; illegal fishing is fined.",
+      "penalty": "Fine up to 1,000 AED.",
+      "location": {
+        "name": "Dubai Creek",
+        "latitude": 25.2697,
+        "longitude": 55.3088
+      }
+    },
+    {
+      "category": "Camping",
+      "urgency": 2,
+      "trigger_zone": "Desert",
+      "rule": "Camping in unauthorized areas is restricted.",
+      "penalty": "Fines or eviction.",
+      "location": {
+        "name": "Al Qudra Desert",
+        "latitude": 24.8536,
+        "longitude": 55.4065
+      }
+    },
+    {
+      "category": "Cycling",
+      "urgency": 2,
+      "trigger_zone": "Roads",
+      "rule": "Cyclists must wear helmets and follow traffic rules.",
+      "penalty": "Fine up to 300 AED.",
+      "location": {
+        "name": "Al Qudra Cycling Track",
+        "latitude": 24.8215,
+        "longitude": 55.4084
+      }
+    },
+    {
+      "category": "Jet Ski",
+      "urgency": 2,
+      "trigger_zone": "Water",
+      "rule": "Jet ski use requires license and must stay within zones.",
+      "penalty": "Fine or confiscation.",
+      "location": {
+        "name": "Jumeirah Beach",
+        "latitude": 25.1925,
+        "longitude": 55.2315
+      }
+    },
+    {
+      "category": "Construction Areas",
+      "urgency": 1,
+      "trigger_zone": "Restricted Zones",
+      "rule": "Entering construction sites without permission is illegal.",
+      "penalty": "Fine or detention.",
+      "location": {
+        "name": "Business Bay",
+        "latitude": 25.186,
+        "longitude": 55.2644
+      }
+    },
+    {
+      "category": "Airport Behavior",
+      "urgency": 1,
+      "trigger_zone": "Airport",
+      "rule": "Making jokes about security threats is treated as a serious offense.",
+      "penalty": "Immediate detention.",
+      "location": {
+        "name": "Dubai International Airport T3",
+        "latitude": 25.2532,
+        "longitude": 55.3657
+      }
+    },
+    {
+      "category": "Hotel Rules",
+      "urgency": 2,
+      "trigger_zone": "Hotels",
+      "rule": "Visitors must register with hotel reception if staying overnight.",
+      "penalty": "Warning or fine.",
+      "location": {
+        "name": "Palm Jumeirah",
+        "latitude": 25.1124,
+        "longitude": 55.139
+      }
+    },
+    {
+      "category": "Fire Safety",
+      "urgency": 1,
+      "trigger_zone": "Public / Indoor",
+      "rule": "Tampering with fire alarms or extinguishers is illegal.",
+      "penalty": "Heavy fines and legal action.",
+      "location": {
+        "name": "Dubai Marina Mall",
+        "latitude": 25.078,
+        "longitude": 55.136
+      }
+    },
+    {
+      "category": "Elevator Safety",
+      "urgency": 3,
+      "trigger_zone": "Buildings",
+      "rule": "Overloading elevators beyond capacity is prohibited.",
+      "penalty": "Warning or fine.",
+      "location": {
+        "name": "JLT Towers",
+        "latitude": 25.0657,
+        "longitude": 55.1372
+      }
+    },
+    {
+      "category": "School Zones",
+      "urgency": 2,
+      "trigger_zone": "Roads",
+      "rule": "Speed limits near schools are strictly enforced.",
+      "penalty": "Fines and black points.",
+      "location": {
+        "name": "Dubai International Academy",
+        "latitude": 25.0576,
+        "longitude": 55.2169
+      }
+    },
+    {
+      "category": "Fuel Stations",
+      "urgency": 2,
+      "trigger_zone": "Gas Stations",
+      "rule": "Using mobile phones while refueling is prohibited.",
+      "penalty": "Fine or warning.",
+      "location": {
+        "name": "ENOC Station Sheikh Zayed Road",
+        "latitude": 25.21,
+        "longitude": 55.271
       }
     }
   ]

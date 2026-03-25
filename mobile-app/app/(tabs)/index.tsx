@@ -3,8 +3,8 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'expo-router';
 import * as Location from 'expo-location';
 import { Ionicons } from '@expo/vector-icons';
-import Storage from '../../utils/storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafetyManager, Rule } from '../../utils/safetyManager';
 
 export default function CurrentStatusScreen() {
   const router = useRouter();
@@ -14,8 +14,9 @@ export default function CurrentStatusScreen() {
   const [loading, setLoading] = useState(false);
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
   const [exchangeRate, setExchangeRate] = useState<string | null>(null);
-  const [country, setCountry] = useState("Kazakhstan (Demo)");
+  const [country, setCountry] = useState("Kazakhstan");
   const [language, setLanguage] = useState("Russian");
+  const [alerts, setAlerts] = useState<Rule[]>([]);
 
   // REPLACED WITH YOUR NETWORK IP (192.168.0.5)
   const BASE_IP = '192.168.0.5'; 
@@ -30,7 +31,18 @@ export default function CurrentStatusScreen() {
         const loc = await Location.getCurrentPositionAsync({ accuracy: Location.LocationAccuracy.Balanced }).catch(() => null);
         if (loc && mounted.current) {
             setLocation(loc);
-            if (loc.coords.latitude > 40) { setCountry("Kazakhstan"); setLanguage("Russian"); }
+            // Dynamic Country Detection
+            const reverse = await Location.reverseGeocodeAsync({ 
+                latitude: loc.coords.latitude, 
+                longitude: loc.coords.longitude 
+            });
+            if (reverse.length > 0 && reverse[0].country) {
+                const detectedCountry = reverse[0].country;
+                if (detectedCountry === "Kazakhstan" || detectedCountry === "United Arab Emirates") {
+                   setCountry(detectedCountry);
+                   SafetyManager.syncRules(detectedCountry);
+                }
+            }
         }
       } catch (e) {}
     })();
@@ -39,14 +51,13 @@ export default function CurrentStatusScreen() {
 
   const fetchCurrency = async () => {
      try {
-        const pair = country.includes("Kazakhstan") ? "KZT" : "AED";
-        // Ensure this points to Python (8000)
+        const pair = country === "Kazakhstan" ? "KZT" : "AED";
         const xres = await fetch(`http://${BASE_IP}:8000/currency-swap?base=USD&target=${pair}`);
         const xdata = await xres.json();
         const rate = xdata.rate?.[pair]?.rate_for_amount;
         if (rate && mounted.current) setExchangeRate(rate.toFixed(2));
       } catch (e) {
-        console.log("Currency link failed on", BASE_IP);
+        console.log("Currency link failed");
       }
   };
 
@@ -54,24 +65,31 @@ export default function CurrentStatusScreen() {
     setLoading(true);
     setStatus("Analysing surroundings...");
     try {
-      if (!location) { setStatus("GPS Offline. Using Mock."); }
-      const lat = location?.coords?.latitude || 51.1255;
-      const lon = location?.coords?.longitude || 71.4705;
+      const loc = await Location.getCurrentPositionAsync({ accuracy: Location.LocationAccuracy.High });
+      if (mounted.current) setLocation(loc);
 
-      // Ensure this points to Python (8000)
-      const res = await fetch(`http://${BASE_IP}:8000/safety-check`, { 
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ lat, lon }) 
+      // METHOD B: Use SafetyManager for Speed + Activity + Alerts
+      const newAlerts = await SafetyManager.handleLocationPulse(loc);
+      setAlerts(newAlerts);
+
+      // Also get Vibe Score from backend
+      const vibeRes = await fetch(`http://${BASE_IP}:8000/safety-check`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ lat: loc.coords.latitude, lon: loc.coords.longitude })
       });
-      const data = await res.json();
-      
-      setVibe(data.vibe || "Stable Baseline");
-      fetchCurrency();
+      const vibeData = await vibeRes.json();
+      if (mounted.current) setVibe(vibeData.vibe || "Stable Baseline");
 
-      setStatus(data.alerts && typeof data.alerts !== 'string' ? "Zone Rules Active." : data.alerts);
+      if (newAlerts && newAlerts.length > 0) {
+          setStatus(`${newAlerts.length} regional rules active in this area.`);
+      } else {
+          setStatus("No specific local restrictions detected. Proactive guarding on.");
+      }
+      
+      fetchCurrency();
     } catch (error) {
-      console.log("Python Backend Offline on", BASE_IP);
+      console.log("Safety Check Error", error);
     } finally {
       if (mounted.current) setLoading(false);
     }

@@ -7,7 +7,8 @@ from app.engine import (
     search_nearby_places, 
     get_vibe_score,
     get_welcome_alert,
-    get_daily_safety_tip
+    get_daily_safety_tip,
+    load_culture_data
 )
 from app.utilities import get_exchange_rate, get_emergency_alerts
 from app.osm_service import get_restricted_polygons
@@ -37,6 +38,12 @@ def read_root():
 @app.post("/cultural-tip")
 def cultural_tip(request: dict):
     return {"tip": get_cultural_tip(request.get("query"), request.get("language"), request.get("profile"))}
+
+@app.get("/sync-all-rules")
+def sync_all_rules(country: str = "Kazakhstan"):
+    # Method: Offline Sync - Provides all 100+ rules for local storage
+    data = load_culture_data(country)
+    return {"rules": data}
 
 @app.post("/safety-check")
 def safety_check(request: LocationRequest):
