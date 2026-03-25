@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import * as Location from 'expo-location';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { NotificationManager } from '../../utils/notificationManager';
 import { SafetyManager, Rule } from '../../utils/safetyManager';
 
 export default function CurrentStatusScreen() {
@@ -25,6 +26,9 @@ export default function CurrentStatusScreen() {
     mounted.current = true;
     (async () => {
       try {
+        // Setup Notifications
+        await NotificationManager.registerForPushNotificationsAsync();
+
         let { status: gpsStatus } = await Location.requestForegroundPermissionsAsync().catch(() => ({ status: 'denied' }));
         if (gpsStatus !== 'granted') return;
         
@@ -173,4 +177,5 @@ const styles = StyleSheet.create({
   gridBtnText: { color: '#fff', fontWeight: 'bold', marginTop: 12, fontSize: 14 },
   sosButton: { flexDirection: 'row', marginTop: 30, backgroundColor: 'rgba(239, 68, 68, 0.1)', width: '100%', padding: 20, borderRadius: 20, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#EF4444' },
   sosText: { color: '#F87171', fontWeight: 'bold', fontSize: 16 }
+  }
 });

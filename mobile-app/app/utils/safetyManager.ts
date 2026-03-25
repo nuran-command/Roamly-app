@@ -1,6 +1,7 @@
 import * as Location from 'expo-location';
 import * as Speech from 'expo-speech';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NotificationManager } from './notificationManager';
 
 const BASE_IP = '192.168.0.5'; // Replace with your actual local IP
 const BASE_URL = `http://${BASE_IP}:8000`;
@@ -61,7 +62,6 @@ export const SafetyManager = {
   },
 
   getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
-    // Basic Haversine approximation
     const R = 6371; // km
     const dLat = (lat2 - lat1) * Math.PI / 180;
     const dLon = (lon2 - lon1) * Math.PI / 180;
@@ -105,14 +105,8 @@ export const SafetyManager = {
    */
   async handleLocationPulse(location: Location.LocationObject) {
     const { latitude, longitude, speed } = location.coords;
-    
-    // Convert m/s to km/h
     const speedKmh = (speed || 0) * 3.6;
-
-    // Detect activity (Mall/Park etc)
     const activity = await this.detectActivityContext(latitude, longitude);
-
-    console.log(`[Safety Pulse] Speed: ${speedKmh.toFixed(1)} km/h | Activity: ${activity}`);
 
     try {
       const response = await fetch(`${BASE_URL}/safety-check`, {
@@ -128,20 +122,22 @@ export const SafetyManager = {
 
       const data = await response.json();
       
-      // If we get high urgency alerts, we speak them out
       if (data.alerts && Array.isArray(data.alerts) && data.alerts.length > 0) {
         const criticalAlert = data.alerts.find((r: Rule) => r.urgency === 1);
         if (criticalAlert) {
            this.speakAlert(criticalAlert.rule);
+           NotificationManager.sendSafetyAlert("CRITICAL LEGAL ALERT", criticalAlert.rule);
         }
         return data.alerts;
       }
     } catch (e) {
-      console.log("Network unreachable, falling back to local rule check.");
       const offlineRules = await this.checkLocalRules(latitude, longitude, speedKmh);
       if (offlineRules.length > 0) {
         const critical = offlineRules.find(r => r.urgency === 1);
-        if (critical) this.speakAlert(critical.rule);
+        if (critical) {
+           this.speakAlert(critical.rule);
+           NotificationManager.sendSafetyAlert("OFFLINE SAFETY WARNING", critical.rule);
+        }
         return offlineRules;
       }
     }
