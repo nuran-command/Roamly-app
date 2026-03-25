@@ -6,9 +6,9 @@
     "rule": "Photographing government buildings, military installations, checkpoints, and border areas is strictly prohibited in Kazakhstan. This includes certain airports and train stations. Authorities are highly sensitive to unauthorized filming of security personnel or sensitive infrastructure. Security guards may ask you to delete photos immediately.",
     "penalty": "Confiscation of equipment, fine of 10-20 MRP, and possible detention for up to 15 days for questioning under administrative code. Permanent deportation for repeat offenders. Legal basis: Kazakhstan Administrative Code Article 443.",
     "location": {
-         "name": "Ak Orda Presidential Palace Area",
-         "latitude": 51.1261,
-         "longitude": 71.4461
+      "name": "Ak Orda Presidential Palace Area",
+      "latitude": 51.1261,
+      "longitude": 71.4461
     }
   },
   {
@@ -52,27 +52,559 @@
     }
   },
   {
-      "category": "Social Manners",
-      "urgency": 3,
-      "trigger_zone": "Restaurants / Cafes",
-      "rule": "In Kazakhstan, a service charge (usually 10-15%) is almost always automatically included in the bill. This is NOT a tip for the waiter, but a fee that goes to the establishment. If you want to tip the server, you should leave an additional 5-10% in cash or ask to add it to the card payment. Tipping is highly appreciated and expected in high-end venues in Almaty and Astana.",
-      "penalty": "Poor service on next visit. No legal penalty.",
-      "location": null
+    "category": "Social Manners",
+    "urgency": 3,
+    "trigger_zone": "Restaurants / Cafes",
+    "rule": "In Kazakhstan, a service charge (usually 10-15%) is almost always automatically included in the bill. This is NOT a tip for the waiter, but a fee that goes to the establishment. If you want to tip the server, you should leave an additional 5-10% in cash or ask to add it to the card payment. Tipping is highly appreciated and expected in high-end venues in Almaty and Astana.",
+    "penalty": "Poor service on next visit. No legal penalty.",
+    "location": null
   },
   {
-      "category": "Smoking",
-      "urgency": 2,
-      "trigger_zone": "Public Transport / Entrances",
-      "rule": "Smoking (including e-cigarettes/vaping) is banned in all public indoor spaces, bus stops, playgrounds, and within 10 meters of building entrances. Vaping is increasingly regulated and treated the same as traditional smoking. Hookah (shisha) is banned in most indoor public cafes as of 2024.",
-      "penalty": "Fine of 15-20 MRP. Legal basis: Code of Health and Healthcare System.",
-      "location": null
+    "category": "Smoking",
+    "urgency": 2,
+    "trigger_zone": "Public Transport / Entrances",
+    "rule": "Smoking (including e-cigarettes/vaping) is banned in all public indoor spaces, bus stops, playgrounds, and within 10 meters of building entrances. Vaping is increasingly regulated and treated the same as traditional smoking. Hookah (shisha) is banned in most indoor public cafes as of 2024.",
+    "penalty": "Fine of 15-20 MRP. Legal basis: Code of Health and Healthcare System.",
+    "location": null
   },
   {
-      "category": "Driving",
-      "urgency": 1,
-      "trigger_zone": "Roads",
-      "rule": "Kazakhstan has a strictly interpreted 'Zero Tolerance' for any amount of alcohol while driving. If you are stopped and a breathalyzer detects ANY trace of alcohol (even from a light beer hours ago), you will be arrested. Bribing a police officer is a criminal offense for both parties and is heavily monitored by dashcams and bodycams in major cities.",
-      "penalty": "Administrative arrest for 15 days + loss of driving license for 7 years. Bribing: Up to 5 years imprisonment. Legal basis: Administrative Code Article 608; Criminal Code Article 367.",
-      "location": null
+    "category": "Driving",
+    "urgency": 1,
+    "trigger_zone": "Roads",
+    "rule": "Kazakhstan has a strictly interpreted 'Zero Tolerance' for any amount of alcohol while driving. If you are stopped and a breathalyzer detects ANY trace of alcohol (even from a light beer hours ago), you will be arrested. Bribing a police officer is a criminal offense for both parties and is heavily monitored by dashcams and bodycams in major cities.",
+    "penalty": "Administrative arrest for 15 days + loss of driving license for 7 years. Bribing: Up to 5 years imprisonment. Legal basis: Administrative Code Article 608; Criminal Code Article 367.",
+    "location": null
+  },
+  {
+    "category": "E-Transport",
+    "urgency": 2,
+    "trigger_zone": "Roads / Sidewalks / Cycle Paths",
+    "rule": "E-scooters are now classified as full vehicles under Kazakhstan law (late 2025 reform, signed by Senate December 2025, awaiting President's signature). All e-scooters (including rental 'kick-sharing' scooters) must have a registered license plate number and mandatory civil liability insurance — riding without these is unlawful road participation. Rules of movement: (1) Ride on dedicated bicycle/cycle paths where available. (2) If no cycle path exists, ride along the far-right edge of the carriageway. (3) On sidewalks, maximum speed is 6 km/h and you must not endanger pedestrians. (4) Riders under 18 without a driver's license cannot use the carriageway at all. (5) E-scooters are banned from sidewalks at speed — enforcement intensified in Almaty and Astana in 2024-2025.",
+    "penalty": "Personal rider violation: Fine under Administrative Offenses Code (amount currently being set by implementing regulations). Rental company violation (allowing unlicensed use, unregistered scooters): Fine of 20 MRP (~86,500 KZT / ~$175), doubled to 40 MRP (~173,000 KZT) for repeat offenses. Legal basis: Law of RK No. 194-V 'On Road Traffic' Article 57; December 2025 Anti-Offense Law (pending presidential signature as of March 2026); Administrative Offenses Code Article 608.",
+    "location": null
+  },
+  {
+    "category": "Identity",
+    "urgency": 1,
+    "trigger_zone": "All Areas / Hotel Check-In / Airport",
+    "rule": "All foreign nationals (non-CIS passport holders) who stay in Kazakhstan for more than 72 hours (3 days) MUST register with the immigration police (OVIR — Department of Migration Police) within 3 working days of arrival. If you stay in a hotel, the hotel automatically registers you — keep your hotel registration receipt as proof. If you stay at a private address (Airbnb, friend's flat, rented apartment), YOU are personally responsible for ensuring registration at the nearest OVIR office. The host or landlord can register you, but many do not — this is your legal obligation, not theirs. Moving between cities does not reset your registration — you only need to register once at your first point of stay. Separately: your passport must be valid for at least 6 months beyond your planned departure date or you risk denial of entry.",
+    "penalty": "Failure to register within 72 hours: Fine of approximately $150 USD (enforced at exit control). Overstaying visa: Fine of $300 USD + mandatory $70 exit visa fee. Deportation and entry ban for serious overstay violations. Legal basis: Law of RK on Migration; OVIR registration regulations.",
+    "location": {
+      "name": "Astana International Airport (OVIR Registration Point)",
+      "latitude": 51.0222,
+      "longitude": 71.4669
+    }
+  },
+  {
+    "category": "Financial",
+    "urgency": 1,
+    "trigger_zone": "Airport / Border Crossings",
+    "rule": "Kazakhstan enforces strict customs currency declaration rules. ALL travelers must: (1) Declare any foreign currency or traveler's cheques exceeding USD $10,000 (or equivalent in any currency) upon both ARRIVAL and DEPARTURE — failure to declare is a customs offense. (2) Declare any amount exceeding USD $3,000 upon exit if you wish to export it. (3) Exporting Kazakh Tenge (KZT) in cash is PROHIBITED for foreigners — you must spend or exchange all tenge before departure. (4) You may only export the same amount of foreign currency you declared on entry (with proof). (5) Antiquities, artworks, and cultural artifacts require a special export permit from the Ministry of Culture — buying a painting at a market and taking it home without a permit is illegal. Keep your customs declaration form from arrival — it must be surrendered at departure on international flights.",
+    "penalty": "Failure to declare over $10,000: Confiscation of undeclared funds + criminal investigation under money laundering statutes. Exporting KZT without permit: Confiscation + fine. Exporting antiquities without permit: Criminal prosecution. Legal basis: Code of RK 'On Customs Regulation' Article 343; Decree of President of RK No. 830 of 14.03.2022; Law on Currency Regulation and Control.",
+    "location": {
+      "name": "Astana International Airport (Customs Hall)",
+      "latitude": 51.0222,
+      "longitude": 71.4669
+    }
+  },
+  {
+    "category": "Drugs",
+    "urgency": 1,
+    "trigger_zone": "All Areas / Airport",
+    "rule": "Kazakhstan enforces one of the strictest anti-narcotics regimes in Central Asia. Even possession of trace amounts of narcotics — including marijuana, hashish, cocaine, heroin, and their analogues — is a criminal offense. Residual drug traces in the bloodstream from prior use abroad can constitute grounds for detention. There is no 'personal use' exception that results in a fine rather than imprisonment (unlike the 2024 UAE reform). Critically, drugs purchased legally in other countries (including cannabis in the Netherlands or certain EU states) become illegal the moment you cross into Kazakhstan. Under 2025 legal amendments: drug hiding ('stashing') offenses now carry 5–8 years for first offenders (down from 5–10 years); trafficking by organized groups, in schools, or to minors: 15–20 years or life imprisonment with full asset confiscation.",
+    "penalty": "Personal possession (small amount, non-public): Criminal charge under Article 296 of Penal Code — arrest up to 3 months or fine up to 80 MCI (~$550). Public use: Up to 160 MCI fine (~$1,100). Possession for distribution (large scale): 3–7 years imprisonment. Trafficking/organized group/to minors: 15–20 years to life imprisonment + full asset confiscation. Legal basis: Articles 296–298 of Penal Code of RK (2014, amended 2025); 2025 Anti-Trafficking Law.",
+    "location": null
+  },
+  {
+    "category": "Social",
+    "urgency": 1,
+    "trigger_zone": "Public / Online / Media",
+    "rule": "Kazakhstan's 'Anti-LGBT Propaganda' law was signed by President Tokayev on December 30, 2025 and is now in force (content provisions effective 60 days after official publication, approximately March 2026). The law bans public expression, distribution, or promotion of information related to 'non-traditional sexual orientation' in public spaces and all media — including online platforms, social media, print, broadcast, and educational materials. This applies to tourists, bloggers, and visitors. Critically: same-sex sexual activity itself remains legal in Kazakhstan (decriminalized in 1998, age of consent is 16 for all). The law targets public EXPRESSION, not private behavior. Do not: display rainbow flags, post pro-LGBTQ+ content on social media from Kazakhstan, hold signs, or wear clothing with explicit LGBTQ+ symbols in public spaces.",
+    "penalty": "Public promotion of 'LGBT propaganda': Administrative offense — up to 10 days detention and/or fine. Foreign nationals: Possible deportation in addition to fine. Legal basis: Law of RK signed December 30, 2025 (amending Law 'On Mass Media' and related acts); Administrative Offenses Code (amended 2025).",
+    "location": null
+  },
+  {
+    "category": "Photography - People",
+    "urgency": 2,
+    "trigger_zone": "Public Areas / Streets",
+    "rule": "Kazakhstan's Personal Data Law (No. 94-V of 2013, amended through 2024) establishes that photographing identifiable individuals and using their image — including publishing it online — without consent constitutes a violation of personal data rights. Citizens have the legal right to demand removal of their image from any platform. A landmark 2019 Supreme Court case established that posting a photo/video of identifiable individuals online without consent is actionable and can result in court-ordered compensation to the subject. As of November 2025, Kazakhstan's Ministry of Culture and Information is actively drafting further regulations to require explicit consent before publishing anyone's image, including for bloggers and social media accounts. Currently, public-interest journalism and filming official events are exempt.",
+    "penalty": "Current: Civil lawsuit — court-ordered compensation to the subject + mandatory removal of content. Repeat or commercial use without consent: Administrative fine under personal data violations. Proposed law (2025/2026): Explicit criminal liability for bloggers and media. Legal basis: Law of RK No. 94-V 'On Personal Data and Its Protection' (2013, updated 2024); Civil Code of RK Article 145 (right to one's image).",
+    "location": null
+  },
+  {
+    "category": "Photography - Government",
+    "urgency": 1,
+    "trigger_zone": "Government Buildings / Presidential Areas / Airports",
+    "rule": "Photographing, filming, or recording the following is explicitly prohibited or heavily restricted in Kazakhstan: (1) The Ak Orda Presidential Palace and its surrounding perimeter in Astana — no photography allowed without official accreditation. (2) Any military installation, border checkpoint, border zone, or military base. (3) Police stations and their interiors. (4) Certain airport infrastructure and security areas — ask before photographing at any transport hub. (5) Officers of law enforcement or security services while they are performing their duties, if they have refused consent. Kazakhstan's national security laws are broadly written and security personnel have discretion to demand deletion of photos on the spot.",
+    "penalty": "Confiscation of camera/device + deletion of images. Fine of 10–20 MRP (~43,000–86,000 KZT). Detention for up to 15 days for questioning if near strategic sites. Criminal charges possible if classified zone was breached. Legal basis: Administrative Code Article 443; Law of RK 'On State Secrets'; Rules on Airspace Use.",
+    "location": {
+      "name": "Ak Orda Presidential Palace",
+      "latitude": 51.1261,
+      "longitude": 71.4461
+    }
+  },
+  {
+    "category": "Driving",
+    "urgency": 2,
+    "trigger_zone": "Roads / Winter Conditions",
+    "rule": "Kazakhstan experiences extreme winters (temperatures of -30°C to -40°C in Astana from November to March). Specific driving rules apply: (1) Winter tires are not legally mandatory by federal law, but driving on icy roads with summer tires creates full civil liability in any accident — rental car companies may void their insurance. (2) Using mobile phones without a hands-free device while driving is illegal. (3) Headlights must be on at all times — even in daylight — on inter-city roads. (4) In fog or heavy snow, hazard lights combined with low beam headlights are mandatory. (5) Police (DPS/Traffic Police) can stop you at any point for a document check — have your international driving permit (IDP), passport, vehicle registration, and insurance documents immediately accessible. Most rental companies require an IDP for foreigners.",
+    "penalty": "Mobile phone while driving: Fine + 3 black points. No headlights on inter-city road: Fine of 5 MRP. Failure to produce documents: Fine of 3 MRP or short detention. Accident on illegal tires: Full civil liability regardless of fault. Legal basis: RK Traffic Rules; Administrative Offenses Code Article 608.",
+    "location": null
+  },
+  {
+    "category": "Police",
+    "urgency": 2,
+    "trigger_zone": "Public Areas / Roads",
+    "rule": "Kazakhstan's police (Politsiya) have broad stop-and-check powers. Key rules for interactions: (1) Do NOT argue with, raise your voice to, or insult a police officer — this is a criminal offense under Article 378 of the Penal Code (disrespect of a representative of authority). (2) You have the right to ask for an officer's name and badge number — they are legally required to provide it. (3) You have the right to call your embassy at any point during detention. (4) NEVER offer a bribe — anti-corruption laws mean both parties (giver and receiver) can be prosecuted. Traffic police bodycams and dashcams are routinely used as evidence. (5) If detained, police may hold you for up to 48 hours without charge before a prosecutor must be notified. (6) You cannot be legally searched without reasonable suspicion — but in practice, compliance is strongly advised.",
+    "penalty": "Insulting/disrespecting an officer: Fine or up to 15 days detention (Administrative Code); aggravated cases: Up to 1 year imprisonment (Criminal Code Article 378). Bribery (giving): 5–7 years imprisonment. Non-cooperation with lawful document check: Fine of 5 MRP. Legal basis: Administrative Code Article 652; Criminal Code Articles 367–368, 378.",
+    "location": null
+  },
+  {
+    "category": "Environment",
+    "urgency": 2,
+    "trigger_zone": "National Parks / Protected Nature Zones",
+    "rule": "Kazakhstan's Environmental Code and 2023 amendments (Article 380-1) specifically protect specially protected natural territories (SPNTs) including Borovoye (Burabay) National Park, Charyn Canyon, Ile-Alatau, and Kolsai Lakes. Prohibited activities in these zones: (1) Picking wildflowers, plants, or removing any natural materials (rocks, soil, plants). (2) Lighting open fires outside designated areas — especially during dry season (May–October). (3) Feeding wild animals, including foxes and birds, which has been actively fined in Burabay. (4) Off-road driving or parking vehicles outside designated areas. (5) Littering or leaving waste of any kind. (6) Camping outside designated zones. Entry fees apply to most national parks; keep your receipt — rangers check.",
+    "penalty": "Littering / fire violation: Fine of 5–15 MRP (~22,000–65,000 KZT). Picking protected plants: Fine of 10–30 MRP. Off-road vehicle damage to terrain: Fine + civil damages for environmental harm. Repeat violation: Fine doubled + possible criminal prosecution under Environmental Code Article 368. Legal basis: Environmental Code of RK; Administrative Code Article 380-1 (effective March 2023); Law on Specially Protected Natural Territories.",
+    "location": {
+      "name": "Burabay National Park (Borovoye)",
+      "latitude": 53.0833,
+      "longitude": 70.2833
+    }
+  },
+  {
+    "category": "Social Manners",
+    "urgency": 3,
+    "trigger_zone": "Homes / Traditional Settings",
+    "rule": "If invited to a Kazakh home or yurt for dastarkhan (traditional table), observe these customs: (1) Always remove shoes at the entrance unless told otherwise. (2) Accept the first offered cup of tea (shubat, kumiss, or chai) — refusing is considered rude. Hold the cup with both hands or the right hand. (3) The eldest person at the table eats first — wait for them. (4) The host may offer you the best piece of food (sheep's head at a dastarkhan is a great honor) — accept graciously even if you don't eat it. (5) Don't finish all the food on your plate — leaving a small amount signals satisfaction; an empty plate signals the host did not provide enough. (6) Do not point the soles of your feet toward elders or toward the direction of prayer (south/qibla). (7) Bring a small gift if visiting a home — sweets, tea, or chocolates are always appropriate.",
+    "penalty": "No legal penalty. Breaking these customs will cause noticeable social discomfort and close doors to authentic cultural experiences.",
+    "location": null
+  },
+  {
+    "category": "Alcohol",
+    "urgency": 2,
+    "trigger_zone": "Shops / Supermarkets",
+    "rule": "In Kazakhstan, alcohol cannot be sold at any retail point (supermarkets, shops, kiosks, petrol stations) between 23:00 and 08:00. This applies to all alcohol — beer, wine, and spirits. Restaurants and licensed bars are exempt from this restriction and can serve alcohol throughout their operating hours. The legal minimum drinking age is 21 years. Proof of age may be requested. Selling alcohol to anyone under 21 is a criminal offense for the seller. Alcohol is not sold at all in several rural and traditionally Muslim-majority districts — check locally. During major national holidays and government-designated 'dry days' (e.g., Day of Knowledge — September 1, some election days), local authorities can announce complete bans on alcohol sales.",
+    "penalty": "Retail sale outside hours: Fine on business + license suspension. Sale to under-21: Criminal offense for the seller — fine + potential jail term. Consumption by underage person in public: Fine on accompanying adult. Legal basis: Law of RK 'On the Regulation of Alcohol Production and Turnover'; Administrative Offenses Code Article 440-1.",
+    "location": null
+  },
+  {
+    "category": "Pedestrian",
+    "urgency": 2,
+    "trigger_zone": "Roads / Crosswalks / Streets",
+    "rule": "Crossing any road outside a designated pedestrian crossing (zebra crossing, underground passage, or overpass) is illegal and actively fined. From January 2026, Kazakhstan updated all pedestrian fine amounts under its new MCI (Monthly Calculation Index of 4,325 KZT). Do not cross on a red pedestrian signal. Do not cross between parked vehicles. At multi-lane roads, always wait for all lanes to stop before crossing — pedestrians do NOT automatically have right of way outside of marked crossings. Police officers do conduct pedestrian enforcement operations, especially in Almaty and Astana city centers.",
+    "penalty": "Jaywalking (first offense, January 2026): 8,650 KZT (~$17). Repeat violation within one year: 43,250 KZT (~$87). Legal basis: Administrative Offenses Code Article 615; Traffic Rules of RK (Government Resolution No. 1196 of 2014, as amended).",
+    "location": null
+  },
+  {
+    "category": "Driving",
+    "urgency": 1,
+    "trigger_zone": "Roads / Highways",
+    "rule": "Kazakhstan uses an automated speed camera network (integrated with the Unified Register of Administrative Offenses, URAP) across highways and urban roads. Fines are issued automatically and registered against your vehicle — rental companies can charge these to your card after you return the vehicle. From January 2026, new MCI-linked fine amounts: (1) Exceeding limit by 10–20 km/h: 5 MCI = 21,625 KZT. (2) Exceeding by 20–40 km/h: 10 MCI = 43,250 KZT. (3) Exceeding by 40–60 km/h: 20 MCI = 86,500 KZT. (4) Exceeding by 60+ km/h (new Dec 2024 law): 40 MCI = 173,000 KZT (~$350) for the first offense; 60 MCI = 259,500 KZT (~$520) for repeat within a year. Speed limits: 60 km/h in urban zones, 90 km/h on rural roads, 110 km/h on highways, 20–30 km/h in school zones during school hours.",
+    "penalty": "See above MCI-linked amounts. Repeat 60+ km/h violation within 1 year: 60 MCI (259,500 KZT). License suspension possible for extreme repeat offenses. Legal basis: Administrative Offenses Code Article 592 (as amended December 4, 2024); Traffic Rules of RK.",
+    "location": null
+  },
+  {
+    "category": "Driving",
+    "urgency": 2,
+    "trigger_zone": "Roads / Intersections",
+    "rule": "Running a red light (proezd na krasny) is one of the most heavily enforced traffic violations in Kazakhstan. Traffic cameras at major intersections in Astana and Almaty photograph violations automatically. Equally: failing to yield to an emergency vehicle (ambulance, fire truck, police) by pulling to the right and stopping is an offense. Driving on a pedestrian footpath, sidewalk, or road shoulder (to bypass congestion) — a common sight in Kazakhstan — is explicitly illegal. From January 2026, camera systems are being further expanded under the automated URAP enforcement network.",
+    "penalty": "Running red light: 10 MCI = 43,250 KZT (~$87) first offense; 15 MCI = 64,875 KZT repeat. Driving on sidewalk/footpath: 15 MCI = 64,875 KZT. Failure to yield to emergency vehicle: Fine under Administrative Offenses Code. Legal basis: Administrative Offenses Code Article 592; Traffic Rules of RK Article 8.",
+    "location": null
+  },
+  {
+    "category": "Driving",
+    "urgency": 2,
+    "trigger_zone": "Roads / Vehicles",
+    "rule": "Mandatory vehicle insurance (compulsory civil liability insurance, 'OC') is required for all vehicles on Kazakhstan roads. Tourists driving rental cars must verify the rental agreement includes current OC insurance — a copy must be in the vehicle. The OC certificate must be presented on demand during a police stop. Driving without valid OC — even if the policy expired yesterday — is a separate offense from other traffic violations. Separately: all vehicles must pass an annual technical inspection (tekhosmotr). Rental companies handle this, but if you're driving a privately arranged or borrowed vehicle, check the inspection is current.",
+    "penalty": "No OC insurance: 10 MCI = 43,250 KZT (~$87) fine. Repeat offense within 1 year: 30 MCI = 129,750 KZT. No valid tekhosmotr: Separate fine under Administrative Offenses Code. Legal basis: Law of RK 'On Compulsory Civil Liability Insurance of Vehicle Owners'; Administrative Offenses Code Article 598.",
+    "location": null
+  },
+  {
+    "category": "Digital",
+    "urgency": 1,
+    "trigger_zone": "Online / Social Media",
+    "rule": "Kazakhstan's Article 174 of the Criminal Code is one of the broadest hate speech laws in Central Asia. It criminalizes any public expression that incites social, national, tribal, racial, class, or religious hatred — including on social media, messaging apps, and websites. Critically, this covers: (1) Sharing or reposting content from others — you can be prosecuted for a repost on VK, Instagram, or WhatsApp without having created the original content. (2) Satirical content about ethnic or religious groups, even if intended as humor. (3) Comments on political events that 'insult national honor or dignity.' (4) Any material supporting banned organizations (a long list including many opposition groups). Anti-extremism police units actively monitor social media. Kazakhstan's Mass Media Law classifies all social media accounts as 'mass media outlets' — meaning you are personally a publisher and bear full legal responsibility for everything on your page, including comments left by others.",
+    "penalty": "First offense (non-aggravated): Fine of up to $50,000 USD + up to 7 years probation. Aggravated (organized group or severe consequences): Up to 20 years imprisonment. Being placed on the 'Financing Terrorism List' is automatic upon conviction — this bans you from all banking services, notary access, and employment in many sectors. Legal basis: Criminal Code of RK Article 174 (as amended 2015–2024); Law of RK 'On Mass Media'; Law 'On Online Platforms and Advertising' (September 2023).",
+    "location": null
+  },
+  {
+    "category": "Digital",
+    "urgency": 1,
+    "trigger_zone": "Online",
+    "rule": "Kazakhstan requires all major foreign social media platforms (those with over 100,000 daily users from Kazakhstan) to appoint a local in-country representative who is a Kazakh citizen, and to respond to government content removal orders within 24 hours or face site-wide blocking. For travelers, the relevant implication is: (1) Several international websites are permanently or periodically blocked in Kazakhstan — including Vimeo, Flickr, Tumblr, certain news portals, and any site ruled to contain 'extremist material.' (2) Using a VPN to bypass blocked content is a legal grey area — VPNs are not explicitly banned, but using one to access content that is banned by court order creates potential legal exposure under the digital extremism provisions. (3) Spreading 'false information' online (Article 242-1, Criminal Code) — including sharing unverified news — can result in up to 10 years imprisonment. In 2025, Kazakhstan enacted the expanded Law on Mass Media further codifying these obligations.",
+    "penalty": "Spreading false information online: Up to 10 years imprisonment (Criminal Code Article 242-1). Supporting banned organizations online: Up to 2 years imprisonment (Criminal Code Article 405). ISP non-compliance with takedown order: Immediate site blocking within 3 hours by the State Technical Service. Legal basis: Criminal Code of RK Articles 242-1, 405; Law of RK 'On Online Platforms and Advertising' (September 2023); Law on Communications (2016 amendments).",
+    "location": null
+  },
+  {
+    "category": "Shopping",
+    "urgency": 2,
+    "trigger_zone": "Markets / Shops",
+    "rule": "Buying counterfeit goods in Kazakhstan is not itself explicitly criminalized for individual consumers (unlike in France or Italy). However: (1) Transporting counterfeit goods across any border — including taking a fake branded item from Kazakhstan to your home country — constitutes a customs/trademark violation in most jurisdictions. Customs in the EU, UK, US, and Australia actively confiscate counterfeit goods and may fine travelers. (2) Kazakhstan itself prohibits the SALE of counterfeit goods under its trademark law, and 338 inspections targeting trademark violations were conducted in 2024, resulting in 297 confirmed infringements and seizure of ~400,000 counterfeit products worth approximately EUR 257,700. Green Bazaar (Almaty) and Barakholka are known hotspots. (3) Counterfeit pharmaceuticals are the most dangerous category — fake medicines with incorrect active ingredients are circulated in some markets. Only buy medications from licensed pharmacies (apteka).",
+    "penalty": "Consumer purchase of counterfeit goods in Kazakhstan: No explicit criminal penalty currently. Transporting home: Your home country's customs law applies — EU/UK confiscation + potential civil fine. Seller: Criminal prosecution under RK Trademark Law + fines. Counterfeit medicines: Separate criminal liability under health laws. Legal basis: Law of RK 'On Trademarks, Service Marks and Appellations of Origin'; Criminal Code of RK Article 198.",
+    "location": {
+      "name": "Green Bazaar (Zelyony Bazaar), Almaty",
+      "latitude": 43.2601,
+      "longitude": 76.9558
+    }
+  },
+  {
+    "category": "Religion",
+    "urgency": 1,
+    "trigger_zone": "Public / Online",
+    "rule": "Kazakhstan regulates all religious activity under the 2011 Law on Religious Activity and Religious Associations (updated through 2024). Key rules for travelers: (1) All religious organizations must be registered with the Agency for Religious Affairs — participating in or promoting an unregistered religious group is an administrative and potentially criminal offense. (2) Distributing any religious literature, pamphlets, or materials in public without prior state authorization is illegal — this applies to all religions, including Christianity, Islam, and others. (3) Conducting religious ceremonies, prayer sessions, or worship meetings in private residences with more than a small number of attendees is restricted without registration. (4) Proselytizing — attempting to convert others to your religion — is explicitly prohibited for foreigners under the Law on Religious Activity. (5) Any online posting that could be interpreted as promoting or recruiting for an unlicensed religious organization is actionable under Article 405 of the Criminal Code.",
+    "penalty": "Distributing unauthorized religious literature: Administrative fine of 50–100 MRP (~216,000–432,000 KZT). Proselytizing (for foreigners): Fine + deportation. Organizing unregistered religious activity: Fine of 100–200 MRP; repeat: Criminal prosecution + organization liquidation. Online promotion of unlicensed group: Up to 2 years imprisonment (Criminal Code Article 405). Legal basis: Law of RK No. 483-IV 'On Religious Activity and Religious Associations' (2011, amended 2024); Criminal Code Article 405; Administrative Offenses Code Article 490.",
+    "location": null
+  },
+  {
+    "category": "Social Manners",
+    "urgency": 3,
+    "trigger_zone": "Public / Transport / Elevators",
+    "rule": "Several unwritten social rules in Kazakhstan are important for positive interactions: (1) Giving up your seat on public transport for elderly, pregnant, or disabled individuals is a strong social expectation — failure to do so causes significant public embarrassment. (2) Eating on the street while walking ('на ходу') is considered somewhat uncouth — locals typically stand still or sit to eat. (3) Greeting with a handshake is expected between men upon meeting. Women may or may not extend a hand — wait for them to initiate. Greeting an elder Kazakh man without rising from your seat is considered very rude. (4) Do not photograph or point directly at someone with your finger — pointing with a finger (especially at a person) is rude in Kazakh culture. (5) Whistling indoors is considered bad luck and socially frowned upon. (6) Never hand something to a Kazakh elder over a threshold (doorway) — either step inside or wait for them to cross.",
+    "penalty": "No legal penalty. Breaching these norms risks open hostility or social confrontation, particularly in traditional settings outside Almaty/Astana.",
+    "location": null
+  },
+  {
+    "category": "Age-Restricted",
+    "urgency": 2,
+    "trigger_zone": "Shops / Public",
+    "rule": "The legal age for purchasing alcohol and tobacco products in Kazakhstan is 21 years old — higher than most European countries (18) and Russia (18). ID is frequently checked at supermarkets, convenience stores, and bars, especially in Almaty and Astana. From January 2026, fines for selling tobacco or alcohol to minors (under 21) are indexed to the new MCI. Separately: e-cigarettes, vaping devices, and heated tobacco products (HTP) are now regulated under the same age restrictions as traditional tobacco. Hookah (shisha) cafes are restricted in many indoor locations as of 2024. The legal gambling age (if visiting any licensed venue in special economic zones) is also 21. Do not purchase alcohol for a visibly young person — this creates secondary liability for the purchaser.",
+    "penalty": "Seller caught serving under-21: Criminal offense — fine + mandatory license suspension for the outlet. Buyer purchasing for a minor: Administrative fine. Legal basis: Law of RK 'On the Regulation of Alcohol Production and Turnover' Article 15; Law 'On Restricting Tobacco Use' (as amended 2024); Administrative Offenses Code Articles 440-1, 165.",
+    "location": null
+  },
+  {
+    "category": "Health",
+    "urgency": 1,
+    "trigger_zone": "Airport / Border / Pharmacies",
+    "rule": "Kazakhstan maintains strict controls on importing medicines and medical devices. Key rules: (1) Prescription medications must be accompanied by a doctor's prescription in Russian or Kazakh, or an officially notarized/apostilled translation. (2) Controlled substances (opioids, benzodiazepines, strong sedatives, stimulants including some ADHD medications like Ritalin/Adderall) require a special Ministry of Health permit for import — tourists may not obtain this as visitors. (3) The maximum personal import allowance for most prescription medicines is a 3-month supply. (4) Medications bought legally abroad may contain substances that are classified as narcotics in Kazakhstan — always verify with the Kazakhstan Ministry of Health list before traveling. (5) Buying prescription-only medications over-the-counter from informal market sellers (which sometimes occurs at bazaars) is illegal for both buyer and seller — counterfeit medications are a known risk.",
+    "penalty": "Undeclared controlled substances at border: Same as drug possession (see drug law entry). Prescription medicine without documentation: Confiscation + possible detention for questioning. Purchasing prescription meds without prescription: Administrative fine. Legal basis: Law of RK 'On Circulation of Medicines' No. 279-IV; List of Narcotic Drugs and Psychotropic Substances of RK (Government Resolution No. 1065 of 2002, updated through 2024); Customs Regulation Code.",
+    "location": {
+      "name": "Astana International Airport (Customs Control)",
+      "latitude": 51.0222,
+      "longitude": 71.4669
+    }
+  },
+  {
+    "category": "Police",
+    "urgency": 1,
+    "trigger_zone": "Public Spaces / Protest Areas",
+    "rule": "Any public gathering, demonstration, rally, march, or single-person picket in Kazakhstan requires prior official permission. Under the Law on Peaceful Assemblies (2020 revision), organizers must submit a notification 3–7 days in advance to the local Akim (mayor's office) and receive written approval. Crucially: (1) Only officially registered legal entities — not individuals — may submit notifications. (2) Approved gathering sites are designated by authorities and are often far from city centers. (3) Even a one-person solo picket requires prior approval — a Russian national was fined ~370 EUR in Almaty in February 2025 for standing alone with a sign. (4) Tourists who join, walk near, photograph, or film an unsanctioned protest can be detained as participants. (5) Police pre-emptively detain known activists before planned events — approaching a protest site as a bystander carries risk.",
+    "penalty": "Participation in unsanctioned assembly: Fine or 5–20 days administrative detention. Organizing unsanctioned assembly: Fine up to 100 MRP (~432,000 KZT) + 20 days detention. Criminal charges (if 'organizing mass riots' applied — Article 272): 4–10 years imprisonment. Foreign nationals: Deportation in addition to fine/detention. Legal basis: Law of RK 'On Peaceful Assemblies' (No. 203-V, 2020); Criminal Code Article 272; Administrative Offenses Code Article 488.",
+    "location": {
+      "name": "Republic Square, Almaty (known demonstration site)",
+      "latitude": 43.2565,
+      "longitude": 76.9286
+    }
+  },
+  {
+    "category": "Photography - Children",
+    "urgency": 2,
+    "trigger_zone": "Public Areas / Schools / Playgrounds",
+    "rule": "Photographing or filming children in Kazakhstan without explicit consent from their parent or legal guardian is a violation of the child's personal data rights under Kazakhstan's Law on the Rights of the Child and the Law on Personal Data Protection (No. 94-V, 2013, amended 2024). This applies to street photography, park shots, school areas, and playgrounds. Sharing such images on social media without parental consent is separately actionable under cybercrime law if the image is identifiable. Schools and kindergartens explicitly prohibit photography by non-staff on their premises. If you photograph a school sports event or public parade involving children and post it online, parents can file a personal data complaint. The law does not distinguish between residents and tourists — the obligation to obtain consent applies equally.",
+    "penalty": "Civil lawsuit by parent/guardian: Court-ordered removal of content + compensation damages. Administrative fine for personal data violation. If shared online without consent: AED-level equivalents under cybercrime provisions are not applicable — instead, Administrative Offenses Code fine applies. Repeat commercial use: Aggravated liability. Legal basis: Law of RK No. 94-V 'On Personal Data and Its Protection'; Law of RK 'On the Rights of the Child' No. 345 (2002, amended 2024); Civil Code Article 145.",
+    "location": null
+  },
+  {
+    "category": "Geography",
+    "urgency": 1,
+    "trigger_zone": "Border Areas / Restricted Zones",
+    "rule": "Kazakhstan maintains formal border zone restrictions requiring advance government permits for foreigners to enter areas near the Chinese border, military installations, and certain sensitive infrastructure. Key restricted or no-go zones include: (1) Areas bordering China in eastern and southeastern Kazakhstan — requires written permit from Ministry of Internal Affairs, applied for in advance through official channels or licensed tour agencies. (2) The city of Baikonur (Russian-leased cosmodrome) — requires a special permit from Roscosmos and can only be visited on licensed package tours. (3) The Semipalatinsk Nuclear Test Site ('Polygon') — as of current regulations, public permits are no longer issued and independent tourist visits are not permitted. (4) Certain zones in the Alatau mountain range near the Kyrgyz border. Wandering into a restricted zone without a permit — even accidentally while hiking — results in detention at military checkpoints.",
+    "penalty": "Entering restricted zone without permit: Detention at military checkpoint + confiscation of devices + fine. Photography in restricted zone: Criminal charges under national security laws. Accessing Semipalatinsk without authorization: Criminal prosecution. Legal basis: Law of RK 'On the State Border of the Republic of Kazakhstan' (No. 73-V, 2013); Government Decree No. 734 of 2013 (border zone permit rules); Government Decree No. 663 of 2020.",
+    "location": {
+      "name": "Baikonur Cosmodrome",
+      "latitude": 45.9646,
+      "longitude": 63.3052
+    }
+  },
+  {
+    "category": "Health",
+    "urgency": 3,
+    "trigger_zone": "All Cities / Rural Areas",
+    "rule": "Tap water safety varies dramatically by location across Kazakhstan. Rules for travelers: (1) Almaty — tap water comes from the Trans-Ili Alatau mountain snowmelt, undergoes filtration and chlorination, and is generally considered safe for adults. However, locals still widely prefer bottled or filtered water. (2) Astana, Shymkent, and all other cities — tap water is NOT recommended for drinking without boiling or filtration first, due to aging Soviet-era pipe infrastructure and variable treatment quality. (3) Rural areas — groundwater and wells often do not meet international standards. Over 57% of Kazakhstan's population uses groundwater that falls below WHO standards. (4) Always check the seal on any bottled water you purchase — counterfeit or refilled bottles exist at some bazaars. (5) Recommended vaccinations before travel: Hepatitis A and Typhoid, especially if visiting smaller cities or eating adventurously. Yellow fever proof required only if arriving from a risk country.",
+    "penalty": "No legal penalty — this is a health safety advisory. Drinking unsafe water can cause gastrointestinal illness or worse in rural areas.",
+    "location": null
+  },
+  {
+    "category": "Transit",
+    "urgency": 3,
+    "trigger_zone": "Roads / Rural Travel",
+    "rule": "Traveling between Kazakhstan's major cities by road involves distances of 1,000+ km across steppe with very limited services. Critical safety rules: (1) Always carry at minimum 20L of spare fuel when leaving city limits — petrol stations on inter-city highways can be 200–300 km apart, and some are unmanned or closed. (2) Carry emergency supplies in winter: warm blankets, food, water, a phone charger power bank, and a shovel — blizzards can close highways with no warning and leave vehicles stranded for hours. (3) An International Driving Permit (IDP) is mandatory for foreigners — a domestic license from your home country alone is not legally accepted. (4) Yandex Go is the only major app-based taxi in Kazakhstan (Uber and Lyft do not operate here). For inter-city travel, 'shared taxis' (marshrutka/poputtchiki) are common but unregulated — agree the price before departing and do not pay until you arrive.",
+    "penalty": "Driving without IDP: Fine under traffic law + vehicle detained until documentation provided. No specific fine for running out of fuel — but you bear full cost of roadside assistance which can be expensive and slow in rural areas.",
+    "location": null
+  },
+  {
+    "category": "Financial",
+    "urgency": 3,
+    "trigger_zone": "Shops / ATMs / Rural Areas",
+    "rule": "Practical payment rules in Kazakhstan tourists frequently get wrong: (1) Always carry cash (KZT) when leaving Almaty or Astana — credit/debit cards (Visa/Mastercard) are widely accepted in city hotels, malls, and restaurants, but most rural guesthouses, petrol stations, roadside cafes, and market vendors are cash-only. (2) Do NOT use informal 'street money changers' — this is illegal and travelers are frequently given counterfeit notes or short-changed. Exchange only at licensed bank kiosks or official exchange bureaus (marked 'Айырбас/Обмен'). (3) Tipping is not automatic or mandatory — service charges are often included in the bill. If you want to tip, 5–10% in cash directly to the server is appropriate in restaurants. Tipping taxi drivers is not expected. (4) ATMs in smaller cities often run out of cash on weekends and public holidays — withdraw cash in Almaty or Astana before traveling. (5) You cannot legally export KZT — spend or exchange all tenge before departure.",
+    "penalty": "Using unlicensed money changer: No criminal penalty for the tourist, but you have no legal recourse if scammed. Exporting KZT: Confiscation at border. No penalty for not tipping.",
+    "location": null
+  },
+  {
+    "category": "Media",
+    "urgency": 1,
+    "trigger_zone": "Public / Online",
+    "rule": "Insulting, defaming, or publicly criticizing any government official or public servant — including local mayors, judges, police officers, and ministers — is a criminal offense in Kazakhstan. Critically, this includes: (1) Posting critical comments about officials on social media, even from outside Kazakhstan if targeted at Kazakhstan (Article 130-1 of the Penal Code). (2) Publishing or forwarding news or commentary that could be deemed defamatory toward officials. (3) Publicly 'disrespecting' the Kazakhstani state, symbols, anthem, or flag. (4) Disparaging the country's reputation abroad — the media law requires all registered media to 'protect Kazakhstan's image.' A blogger was sentenced to 5 years of restricted freedom in April 2025 for posting a satirical song deemed to be 'inciting interethnic discord.' The line between satire and criminality is decided by government-appointed linguistic experts.",
+    "penalty": "Insulting a public official online: Up to 1 year imprisonment (Criminal Code Article 378). Defamation of official (causing 'harm to honor and dignity'): Fine of up to 2,000 MCI (~8.6 million KZT) or up to 2 years imprisonment (Article 130). Repeat offense or via mass media: 3 years imprisonment. Legal basis: Criminal Code of RK Articles 130, 378, 174; Law of RK 'On Mass Media' (June 2024 revision).",
+    "location": null
+  },
+  {
+    "category": "Religion",
+    "urgency": 2,
+    "trigger_zone": "Public / Hotels / Schools",
+    "rule": "Kazakhstan is a secular state, but religious expression is tightly regulated for foreigners. Specific rules often unknown to tourists: (1) Wearing clearly religious clothing (burqa, niqab — full face veil) in public is not explicitly banned by law, but is heavily frowned upon and may prompt police questioning in some regions. (2) The azan (call to prayer) is broadcast from registered mosques — this is legal and normal. Do not film or mock it. (3) Proselytizing any religion to citizens in public — including informal conversations about your faith with intent to convert — is illegal without Akimat registration (see religion entry). (4) Bringing large quantities of any religious literature (Qurans, Bibles, pamphlets) into Kazakhstan must be declared at customs — individual copies for personal use are permitted, commercial quantities are not. (5) Jehovah's Witnesses are a banned organization in Kazakhstan — any affiliation with or participation in their activities carries criminal penalties.",
+    "penalty": "Proselytizing without registration: Fine + deportation. Commercial import of religious literature: Confiscation + criminal investigation. Participation in Jehovah's Witness activities: 3–7 years imprisonment (Criminal Code Article 405). Legal basis: Law of RK 'On Religious Activity and Religious Associations' (2011, amended 2024); Administrative Offenses Code Article 490; Criminal Code Article 405.",
+    "location": null
+  },
+  {
+    "category": "Media",
+    "urgency": 1,
+    "trigger_zone": "Online / Public / Media",
+    "rule": "Filming law enforcement officers in Kazakhstan — including traffic police (DPS), border guards, and anti-terrorism officers — while they are performing their duties, after they have requested you stop, or in ways that obstruct their work, can result in confiscation of your device and administrative charges. Additionally: (1) Live-streaming or posting footage of accidents, crime scenes, or emergency responses on social media without ensuring no identifiable victims are shown requires consent from those involved. (2) Kazakhstan's 2024 Mass Media Law classifies any YouTube channel, Instagram account, or Telegram channel with more than 10,000 subscribers as a media outlet subject to full registration obligations — meaning active bloggers must register and comply with content laws. (3) Recording conversations with government officials without their consent may violate privacy law if used in any published context.",
+    "penalty": "Filming officer after refusal: Administrative Offenses Code fine + device confiscation. Publishing footage of accident victims without consent: Fine under personal data law. Unregistered blog/channel with 10k+ subscribers: Fine under media registration law. Legal basis: Law of RK 'On Mass Media' (June 2024); Administrative Offenses Code Article 652; Law of RK 'On Personal Data and Its Protection'.",
+    "location": null
+  },
+  {
+    "category": "Driving",
+    "urgency": 3,
+    "trigger_zone": "Roads / Highways",
+    "rule": "Practical road safety rules specific to Kazakhstan that tourists frequently overlook: (1) Animal crossings — sheep, cattle, horses, and camels crossing roads are common in rural and semi-rural areas throughout Kazakhstan, especially at dawn and dusk. Hitting livestock creates full civil liability for the driver regardless of fault — you must compensate the owner. (2) Road quality — outside Almaty and Astana, road surfaces deteriorate significantly. Many inter-city routes have potholes, no road markings, and no lighting at night. (3) Kazakhstan drives on the right side of the road. (4) Hazard signs — Kazakhstan uses European-style road signs in Russian and Kazakh. Key ones: 'Стоп' = Stop, 'Объезд' = Detour, 'Ремонт' = Road works. (5) Speed bumps ('лежачие полицейские' — literally 'sleeping policemen') in Kazakhstan are extremely steep and unmarked — hitting one at speed can cause serious vehicle damage. (6) Rental cars: Inspect the vehicle thoroughly before accepting — Kazakhstan's roads cause damage frequently and agencies may hold you responsible.",
+    "penalty": "Hitting livestock: Full civil liability — compensation to the owner determined by animal's value. No specific MCI-based fine for road quality issues — damage liability falls on the driver. Failure to stop at marked stop sign: Fine under Administrative Offenses Code.",
+    "location": null
+  },
+  {
+    "category": "Social Manners",
+    "urgency": 2,
+    "trigger_zone": "Public / Hotels / Transport",
+    "rule": "Several behaviors that are completely normal in Western countries can cause serious offense or create confrontations in Kazakhstan: (1) Chewing gum loudly or blowing bubbles in the presence of elders is considered disrespectful. (2) Refusing food offered by a Kazakh host more than twice is considered rude and may cause genuine offense — accept the third offer even if you only take a small amount. (3) Discussing the January 2022 'Bloody January' events (Qandy Qantar) — when hundreds were killed in anti-government protests — is an extremely sensitive topic. Do not ask about it casually. (4) Commenting negatively on Russia, the war in Ukraine, or Kazakhstan's relationship with Russia in public spaces or with people you do not know well can provoke strong reactions — Kazakhstani society is deeply divided on this issue. (5) Bargaining in supermarkets is not acceptable — fixed prices are standard. Bargaining at bazaars (markets) is normal and expected.",
+    "penalty": "No legal penalty for most of these — but comments about January 2022, Russia, or Ukraine in the wrong setting can escalate rapidly to confrontation or, in worst cases, police involvement if a complaint is filed for 'inciting discord.'",
+    "location": null
+  },
+  {
+    "category": "Accommodation",
+    "urgency": 3,
+    "trigger_zone": "Hotels / Hostels / Airbnb",
+    "rule": "The tourist bed tax for foreigners in Kazakhstan was officially abolished from January 9, 2024 (Order of Minister of Tourism and Sports No. 347, December 27, 2023). A zero-rate now applies nationwide. If any hotel or accommodation still charges you a 'tourist tax' or 'bed tax' as a separate line item, this is incorrect and you may dispute it. Note: This only abolished the tourist-specific surcharge — regular VAT and hotel service charges are still applied in room rates as normal. Keep your hotel receipt stamped at check-in as it doubles as your address registration confirmation for OVIR purposes.",
+    "penalty": "No legal penalty for tourist. If a hotel overcharges: dispute at checkout; if unresolved, file a complaint with the Committee on Consumer Protection (Ministry of Trade and Integration). Legal basis: Order of Minister of Tourism and Sports No. 347 of December 27, 2023.",
+    "location": null
+  },
+  {
+    "category": "Social Manners",
+    "urgency": 2,
+    "trigger_zone": "Residential Buildings / Hotels / Apartments",
+    "rule": "Kazakhstan has legally enforced quiet hours under Article 437 of the Administrative Code. Making noise that disturbs neighbours is prohibited during: Weekdays: 10:00 p.m. to 9:00 a.m. Weekends and public holidays: 11:00 p.m. to 10:00 a.m. This covers: loud music, TV at high volume, shouting, drilling, renovation work, parties, and even barking dogs if the owner is present. Daytime disturbances above 55 dBA (roughly the level of a loud conversation) can also be reported if they exceed established limits. Important for Airbnb and apartment guests: your host can be held liable for your noise violations. Police can be called directly by neighbours — a single complaint can trigger an on-the-spot fine. Do NOT make a false or unfounded noise complaint about someone else: filing a false complaint carries its own fine.",
+    "penalty": "First offense: 5 MCI = 21,625 KZT (~$43) for individuals. Repeat within 1 year: 10 MCI = 43,250 KZT (~$87). False noise complaint: 30 MCI = 129,750 KZT. Legal basis: Article 437 of the Administrative Offenses Code of RK (as clarified June 2025 by Tengrinews legal analysis).",
+    "location": null
+  },
+  {
+    "category": "Driving",
+    "urgency": 3,
+    "trigger_zone": "Roads / City Streets",
+    "rule": "Kazakhstan has a significant road rage culture — particularly in Almaty and Astana. Practical rules for tourist drivers: (1) Do NOT engage with or gesture at aggressive drivers. Road rage confrontations in Kazakhstan can escalate quickly to physical altercations and even weapons. The US State Department specifically warns against non-confrontational responses. (2) Unlicensed taxis and private 'bombilas' (informal drivers who wave you down) are illegal and carry robbery risks — use only Yandex Go or verified taxi stands. (3) Never get into a taxi that already has other passengers. (4) If stopped at a police checkpoint on a highway (a common occurrence on the Almaty–Astana highway), stay calm, present documents politely, and do not argue. Traffic police at rural checkpoints are known to request informal 'facilitation payments' — decline politely and request an official fine receipt (kvitantsiya). (5) Dashcams are strongly recommended — they are widely used by Kazakhstani drivers and provide legal protection in accidents.",
+    "penalty": "Actual fines for traffic violations are fixed (see earlier entries). Paying an unofficial 'bribe' to a police officer: Criminal offense for both parties — up to 7 years imprisonment for the driver (Article 367 of the Criminal Code). Legal basis: US State Department Kazakhstan Travel Advisory; Administrative Offenses Code; Criminal Code Article 367.",
+    "location": null
+  },
+  {
+    "category": "Hunting",
+    "urgency": 1,
+    "trigger_zone": "Rural Areas / Steppes / Mountains",
+    "rule": "Hunting in Kazakhstan by foreigners is strictly regulated and requires multiple permits. You CANNOT independently arrange a hunting trip — all foreign hunters must work through a licensed Kazakh hunting entity (ohotokhozaystvo) who will obtain the required permits on your behalf. Required documents for foreign hunters: (1) A contract with a licensed hunting entity. (2) A wildlife use permit (one-time or seasonal) — obtained from the local Akim's office or Ministry of Agriculture. (3) Your home country's hunting license. (4) An Internal Affairs permit to import and export hunting firearms and ammunition — this is separate from customs clearance. (5) If hunting with birds of prey (eagle hunting): a passport for the hunting bird. Prohibited at all times: using vehicles (including snowmobiles) to chase animals, using explosives, hunting at night with artificial lighting, and hunting rare or endangered species. Minimum hunting age for firearms: 18 years. Eagles, bears, and ibex are highly regulated.",
+    "penalty": "Hunting without a permit: Fine of 20–100 MRP + confiscation of weapons and catch + vehicle confiscation. Importing firearms without Internal Affairs permit: Criminal prosecution under weapons law. Hunting in a closed area or season: Fine doubled + criminal investigation. Legal basis: Law of RK 'On Protection, Reproduction and Use of Wildlife' (July 9, 2004); Hunting Rules of RK (Order No. 525 of 2015); Law 'On State Control of Weapons' (No. 339, 1998, amended 2022).",
+    "location": {
+      "name": "Ile-Alatau National Park (Hunting Zone Boundary)",
+      "latitude": 43.1500,
+      "longitude": 77.0000
+    }
+  },
+  {
+    "category": "Environment",
+    "urgency": 2,
+    "trigger_zone": "Rivers / Lakes / Reservoirs",
+    "rule": "Fishing in Kazakhstan's rivers, lakes, and reservoirs requires an amateur fishing permit for all individuals, including foreigners. Permits are obtained through the e-Gov portal (egov.kz) under 'Issuance of permit for use of wildlife' and are paid. Key rules: (1) Fishing is strictly PROHIBITED during spawning seasons (generally April 1 to June 10, varying by water body — check the specific reservoir). (2) Fishing while intoxicated (drunk fishing) is explicitly banned and enforceable on the spot by rangers. (3) Using explosives, pesticides, poison, or electric current to catch fish is a criminal offense. (4) You may not use gear that blocks more than two-thirds of a river's width. (5) Fishing for sturgeon requires a separate, more restricted permit. (6) Catch limits are set per permit — exceeding them is an offense. (7) Certain endangered fish species (including some sturgeon, taimen, and rare carp) are completely protected and cannot be taken under any permit.",
+    "penalty": "Fishing without permit: Fine of 5–20 MRP. Fishing during spawning season: Fine of 10–30 MRP + confiscation of gear. Using explosives/poison to fish: Criminal prosecution, up to 3 years imprisonment. Catching protected species: Fine of 50–200 MRP + mandatory compensation for ecological damage. Legal basis: Law of RK 'On Protection, Reproduction and Use of Wildlife' (2004); Fishing Rules (Order No. 18-04/148 of 2015); Restrictions Order No. 190 of 2015.",
+    "location": {
+      "name": "Kapchagai Reservoir (Almaty Region)",
+      "latitude": 43.8500,
+      "longitude": 77.0667
+    }
+  },
+  {
+    "category": "Identity",
+    "urgency": 2,
+    "trigger_zone": "All Cities — Multi-City Travel",
+    "rule": "A little-known rule that traps tourists on multi-city Kazakhstan itineraries: when a foreign national changes their place of temporary stay within Kazakhstan, the HOST (hotel, Airbnb host, friend, or employer) must notify the Internal Affairs Authorities (IAA/Migration Police) within 3 working days of the foreigner's arrival at the new location. This is called 'Notification 2' under Kazakhstan's Passport Registration Rules. If you travel to a different city for more than 5 calendar days and return to your original accommodation each day, no notification is required. But if you stay overnight in a different city, your new host must file a new notification. Hotels do this automatically via the e-Hotel system — the risk is entirely with Airbnb hosts and private hosts who may not know this rule and frequently don't comply. If your host fails to notify, both you and the host can be fined.",
+    "penalty": "Host failure to notify IAA of foreigner's new location within 3 working days: Fine on the host. Foreigner found staying at an unregistered address: Risk of deportation + fine. Legal basis: Law of RK 'On Migration' (as amended); Passport Registration Rules of RK; Lexology/Ius Laboris analysis of Migration Police Department response (2020).",
+    "location": null
+  },
+  {
+    "category": "Health",
+    "urgency": 2,
+    "trigger_zone": "Airport / Border / Work Visa Application",
+    "rule": "Kazakhstan maintains partial HIV-related entry restrictions. The rules are: (1) TOURISTS (up to 30 days without visa, or short-stay tourist visa): No HIV test required — tourist entry is unrestricted by health status. (2) WORK OR RESIDENCY VISA APPLICANTS: Foreigners applying for a Kazakh work permit or residency permit must submit a health certification form including a negative HIV test result to the Migration Police in the city where they intend to work or reside. The test must be no more than 3 months old. If conducted abroad in a language other than Russian or Kazakh, it must be accompanied by a notarized translation. (3) PERMANENT RESIDENCY: A negative HIV test is mandatory. Being HIV-positive will result in denial. Kazakhstan is listed by UNAIDS among 48 countries and territories that still maintain HIV-related travel restrictions. People living with HIV who intend to visit short-term are not affected but should be aware of the legal landscape if planning a longer stay or work assignment.",
+    "penalty": "Tourist entry: No restriction. Work/residency application with positive HIV result: Denial of permit + possible deportation if status becomes known after permit is granted. Criminal exposure under Kazakhstan's HIV criminalization law (Article 117 of Criminal Code) if willful transmission occurs. Legal basis: Law of RK 'On Population Health and Healthcare'; US State Department Kazakhstan Country Information; UNAIDS travel restriction database.",
+    "location": null
+  },
+  {
+    "category": "Police",
+    "urgency": 1,
+    "trigger_zone": "Airport / Border Checkpoints",
+    "rule": "Kazakhstan has law enforcement cooperation agreements with Russia under bilateral mutual legal assistance treaties (MLAT). This has specific implications for certain nationalities: (1) Russian authorities can request that Kazakh counterparts give increased scrutiny to former or current US government and military personnel who have prior work in Russia. (2) Russian law enforcement may request that Kazakh authorities detain certain nationals upon entry or exit. (3) Citizens of countries with outstanding Interpol Red Notices or bilateral extradition treaties with Kazakhstan may be detained at Astana or Almaty airports — Kazakhstan's border system checks against international databases. (4) If you have ANY active warrant, civil judgment, travel ban, or unresolved fine in Russia, Belarus, or other CIS countries, Kazakhstan's border system may flag you due to shared law enforcement databases.",
+    "penalty": "Detention at airport: Held for questioning until cleared through diplomatic channels. Surrender to a requesting country under extradition treaty: Full extradition proceedings. No specific administrative fine — this is a security/detention issue. Legal basis: Kazakhstan-Russia Bilateral Mutual Legal Assistance Treaty; US State Department Kazakhstan Country Information (2024); CIS mutual legal assistance framework.",
+    "location": {
+      "name": "Astana International Airport (Border Control)",
+      "latitude": 51.0222,
+      "longitude": 71.4669
+    }
+  },
+  {
+    "category": "Shopping",
+    "urgency": 3,
+    "trigger_zone": "Markets / Bazaars",
+    "rule": "Haggling etiquette in Kazakhstan's markets: (1) Bargaining is standard and expected at all open-air bazaars (Zeleny Bazaar in Almaty, Altyn Orda in Astana) and informal stalls. Opening with a counter-offer of 50–60% of the asking price is normal. (2) Never haggle in supermarkets, official shops, or branded stores — prices are fixed and attempting to bargain will cause awkwardness. (3) Once you agree on a price verbally and the seller has accepted, walking away without buying is considered extremely bad-mannered — only start haggling if you intend to buy. (4) Souvenir items (felt crafts, ceramics, traditional clothing) made by individual artisans at bazaars are genuine — mass-produced tourist goods often sold alongside them at the same stalls are not. (5) Antique items — especially Soviet-era medals, instruments, weapons, coins, and pre-Soviet artifacts — require an export permit from the Ministry of Culture. Buying and trying to export them without a permit is a customs criminal offense.",
+    "penalty": "No penalty for normal bargaining or walking away (social discomfort only). Exporting antiques/cultural artifacts without permit: Confiscation at airport + criminal prosecution under Customs Code Article 543 + fine of 100–300 MRP. Legal basis: Law of RK 'On Culture'; Customs Code Article 543; US State Department Kazakhstan travel warning on antiques.",
+    "location": {
+      "name": "Zeleny Bazaar (Green Bazaar), Almaty",
+      "latitude": 43.2601,
+      "longitude": 76.9558
+    }
+  },
+  {
+    "category": "Digital",
+    "urgency": 3,
+    "trigger_zone": "Hotels / Cafes / Public WiFi",
+    "rule": "Practical digital safety rules for Kazakhstan that tourists consistently overlook: (1) Public WiFi in Kazakhstan (hotels, cafes, airports) is broadly monitored — do not access banking, sensitive accounts, or personal communications without a VPN on any public network. (2) Kazakhstan's government has historically attempted to install a national SSL root certificate (the 'MITM certificate') on its citizens' devices — this was blocked by major browsers (Chrome, Firefox) in 2019 and 2020 but the regulatory intent remains active. (3) The Kazakhstani SIM registration law requires all SIM cards to be registered to a real identity — tourist SIM purchases require your passport. (4) If you use a local Kazakh SIM and leave messages, location data, or photos stored on Kazakh telecom servers, this data is accessible to the National Security Committee (KNB) under the Law on Operative-Investigative Activity. (5) Signal and Telegram are accessible — but Telegram channels deemed extremist have been blocked.",
+    "penalty": "No personal penalty for using encrypted apps or VPNs for legitimate purposes. Purchasing an unregistered SIM: Seller's offense, not buyer's. Data on Kazakh servers: Accessible to KNB without a court order under national security provisions. Legal basis: Law of RK 'On Communications' (2016, amended 2022); Law 'On Operative-Investigative Activity'; TDRA digital regulations.",
+    "location": null
+  },
+  {
+    "category": "Social Manners",
+    "urgency": 3,
+    "trigger_zone": "Restaurants / Cafes / Public Spaces",
+    "rule": "Practical day-to-day etiquette traps in Kazakhstan that cause friction with locals: (1) Splitting a restaurant bill is unusual in Kazakh culture — the person who invited pays the entire bill. If you are invited out, expect your host to pay; if you invited, expect to pay in full. Insisting on splitting can cause embarrassment. (2) Sending food back in a restaurant is considered offensive — Kazakhs tolerate imperfect food silently rather than complain to staff publicly. (3) Calling a waiter by waving your hand or snapping fingers is considered rude — make eye contact and give a subtle nod, or say 'Kechirasiz' (Excuse me). (4) When visiting someone's home and using their bathroom, always ask permission first — the host will show you where it is. Wandering through rooms uninvited is considered intrusive. (5) In Kazakh and Russian etiquette, 'no thank you' to food or tea on the first offer is often interpreted as politeness, not refusal — expect to be offered again at least twice. Refusing three times is a genuine refusal.",
+    "penalty": "No legal penalty. Violating these norms creates social friction and can permanently affect relationships or business dealings in Kazakhstan, where personal trust is central to all interactions.",
+    "location": null
+  },
+  {
+    "category": "Dress Code",
+    "urgency": 2,
+    "trigger_zone": "Government Offices / Immigration / Courts",
+    "rule": "Wearing extremely revealing clothing (very short shorts, crop tops, beachwear, or sleeveless shirts) inside government buildings such as migration offices (OVIR), courts, police stations, and municipal offices is not allowed. Security staff may deny entry if the clothing is considered inappropriate. This applies especially when handling official documents such as visa extensions, registration, or fines.",
+    "penalty": "Refusal of entry until properly dressed. In rare cases, removal from the building by security personnel. No financial penalty.",
+    "location": null
+  },
+  {
+    "category": "Transit",
+    "urgency": 2,
+    "trigger_zone": "Buses / Metro / Public Transport",
+    "rule": "Entering public transport without validating your ticket or transport card is illegal. In cities such as Almaty and Astana, random ticket inspections are frequent, especially on buses and metro lines. Even if the ticket machine is broken, you must pay through the official mobile app or card system.",
+    "penalty": "Administrative fine of approximately 5 MRP for fare evasion. Repeated violations may result in increased fines. Legal basis: Local municipal transport regulations.",
+    "location": null
+  },
+  {
+    "category": "Photography - Accidents",
+    "urgency": 1,
+    "trigger_zone": "Road Accidents / Emergency Scenes",
+    "rule": "Filming or photographing road accidents, injured people, or emergency response scenes and posting them online without consent can violate Kazakhstan's personal data protection laws. If victims are identifiable, authorities can require deletion of the footage. Publishing graphic or sensitive content is treated as a personal data violation.",
+    "penalty": "Mandatory deletion of content + administrative fine under personal data law. Possible civil lawsuit from victims or relatives. Legal basis: Law of RK 'On Personal Data and Its Protection'.",
+    "location": null
+  },
+  {
+    "category": "Public Behavior",
+    "urgency": 2,
+    "trigger_zone": "Public Streets / Transport / Parks",
+    "rule": "Using offensive gestures (especially the middle finger), shouting insults, or behaving aggressively toward strangers in public can be classified as 'minor hooliganism' under Kazakhstan law. Police can intervene even if no physical violence occurred.",
+    "penalty": "Fine of 5–10 MRP or administrative detention for up to 5 days. Legal basis: Administrative Code Article 434 (Minor Hooliganism).",
+    "location": null
+  },
+  {
+    "category": "Public Cleanliness",
+    "urgency": 2,
+    "trigger_zone": "Streets / Parks / Public Spaces",
+    "rule": "Throwing cigarette butts, chewing gum, plastic bottles, or any small waste onto the ground is considered littering and is actively fined in major cities. This includes throwing waste from a car window or leaving trash near benches.",
+    "penalty": "Fine of approximately 5–10 MRP depending on the violation. Repeat offenses may result in higher fines. Legal basis: Administrative Code Article 434-2.",
+    "location": null
+  },
+  {
+    "category": "E-Transport",
+    "urgency": 2,
+    "trigger_zone": "Public Parks / Pedestrian Zones",
+    "rule": "Riding an electric scooter at high speed inside pedestrian parks, squares, and promenades is prohibited. Riders must slow down significantly or dismount in crowded areas. Police in Almaty and Astana have begun stopping riders who endanger pedestrians.",
+    "penalty": "Administrative fine under road safety laws. Scooter may be temporarily confiscated in repeated cases.",
+    "location": null
+  },
+  {
+    "category": "Social",
+    "urgency": 3,
+    "trigger_zone": "Public Conversations",
+    "rule": "Mocking the Kazakh language or refusing to respond politely when someone speaks Kazakh can cause serious offense. Kazakhstan promotes the Kazakh language officially, and disrespectful behavior toward it can create social confrontation even if not illegal.",
+    "penalty": "No legal penalty. High risk of social conflict or being asked to leave establishments.",
+    "location": null
+  },
+  {
+    "category": "Police",
+    "urgency": 1,
+    "trigger_zone": "Public Areas / Roads",
+    "rule": "Refusing to show identification when legally requested by a police officer is an administrative offense. Even if you believe the stop is unnecessary, you must comply first and contest it later through official channels.",
+    "penalty": "Fine of 5 MRP or temporary detention until identity is confirmed. Legal basis: Administrative Code Article 613.",
+    "location": null
+  },
+  {
+    "category": "Shopping",
+    "urgency": 3,
+    "trigger_zone": "Markets / Bazaars",
+    "rule": "Touching food items (bread, fruits, pastries) with bare hands in open markets before buying is considered disrespectful and unhygienic. Vendors expect customers to ask before touching goods.",
+    "penalty": "No legal penalty. Vendor may refuse service or charge full price for damaged items.",
+    "location": null
+  },
+  {
+    "category": "Religion",
+    "urgency": 2,
+    "trigger_zone": "Mosque Surroundings / Religious Areas",
+    "rule": "Smoking, eating loudly, or taking selfies directly in front of people praying near mosques is considered disrespectful behavior. Even outside the mosque building, religious etiquette is expected.",
+    "penalty": "Request to leave the area. Possible administrative fine if behavior is considered insulting religious feelings.",
+    "location": null
+  },
+  {
+    "category": "Public Transport Etiquette",
+    "urgency": 3,
+    "trigger_zone": "Metro / Buses / Trams",
+    "rule": "Playing music or videos on your phone without headphones in public transport is considered rude behavior and may lead to confrontation. In some metro systems, staff may ask you to stop.",
+    "penalty": "No legal penalty. Possible removal from transport if disturbance continues.",
+    "location": null
+  },
+  {
+    "category": "Accommodation",
+    "urgency": 2,
+    "trigger_zone": "Apartments / Residential Buildings",
+    "rule": "Smoking inside apartment stairwells and shared corridors is prohibited in most residential buildings. Many buildings have internal CCTV and neighbors frequently report violations.",
+    "penalty": "Fine under public health laws (15–20 MRP). Possible eviction from Airbnb or rental apartment.",
+    "location": null
+  },
+  {
+    "category": "Security",
+    "urgency": 1,
+    "trigger_zone": "Airports / Train Stations",
+    "rule": "Taking photos of airport security checkpoints, X-ray machines, police patrol units, or border officers is strictly prohibited. Security staff may immediately approach you if a phone is raised near control areas.",
+    "penalty": "Deletion of photos + fine under administrative law. Possible short-term detention for questioning.",
+    "location": {
+      "name": "Astana International Airport Security Area",
+      "latitude": 51.0222,
+      "longitude": 71.4669
+    }
+  },
+  {
+    "category": "Digital",
+    "urgency": 1,
+    "trigger_zone": "Social Media",
+    "rule": "Posting videos that insult Kazakhstan, its government, its people, or national traditions on social media while staying in the country can lead to administrative or criminal charges if the content is considered offensive or harmful to national dignity.",
+    "penalty": "Fine or criminal investigation depending on severity. Possible deportation for foreign nationals. Legal basis: Criminal Code Articles 174 and 130.",
+    "location": null
+  },
+  {
+    "category": "Public Safety",
+    "urgency": 2,
+    "trigger_zone": "Night Streets / Parks",
+    "rule": "Drinking alcohol while sitting in a parked car (even if the engine is off) in a public area can still be treated as public alcohol consumption or preparation for drunk driving. Police may approach and perform a breath test.",
+    "penalty": "Fine for public drinking or administrative arrest if intoxication is confirmed. Legal basis: Administrative Code Article 440.",
+    "location": null
   }
 ]

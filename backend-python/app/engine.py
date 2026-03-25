@@ -24,7 +24,11 @@ embeddings = GoogleGenerativeAIEmbeddings(
     output_dimensionality=768
 )
 
-def get_nearby_rules(lat: float, lon: float):
+def get_nearby_rules(lat: float, lon: float, speed: float = 0, activity: str = "general"):
+    """
+    Method B: Advanced Trigger Logic
+    Calculates proximity but also triggers based on speed and explicit activity context.
+    """
     current_dir = os.path.dirname(os.path.abspath(__file__))
     is_kazakhstan = lat > 40
     
@@ -35,42 +39,111 @@ def get_nearby_rules(lat: float, lon: float):
         json_path = os.path.join(current_dir, "..", "data", "uae_culture.json")
         country = "UAE"
     
-    nearby = []
+    triggered_rules = []
     if os.path.exists(json_path):
         with open(json_path, "r") as f:
             data = json.load(f)
             rules = data if isinstance(data, list) else data.get("rules", [])
+            
             for rule in rules:
+                is_triggered = False
+                trigger_source = ""
+
+                # 1. GEOPROXIMITY TRIGGER (Classic)
                 if rule.get("location"):
                     t_lat = rule["location"].get("latitude")
                     t_lon = rule["location"].get("longitude")
                     if t_lat and t_lon:
                         dist = math.sqrt((lat - t_lat)**2 + (lon - t_lon)**2) * 111000
-                        if dist < 1500: # Expanded range to 1.5km
-                            nearby.append(rule)
+                        if dist < 1500: # 1.5km threshold
+                            is_triggered = True
+                            trigger_source = "📍 Proximity Alert"
+
+                # 2. SPEED-BASED TRIGGER (Driving/Transit)
+                if not is_triggered and speed > 20: 
+                    # If moving fast, trigger Driving or Transit rules
+                    cat = rule.get("category", "").lower()
+                    if "driving" in cat or "transit" in cat or "transport" in cat:
+                        is_triggered = True
+                        trigger_source = "🚗 Transit Mode"
+
+                # 3. PEDESTRIAN TRIGGER (Slow movement near roads)
+                if not is_triggered and 0.5 < speed < 7:
+                    cat = rule.get("category", "").lower()
+                    if "pedestrian" in cat or "cleanliness" in cat or "public behavior" in cat:
+                        is_triggered = True
+                        trigger_source = "🚶 Pedestrian Mode"
+
+                # 4. ACTIVITY CONTEXT TRIGGER (Shopping/Dining/Bazaars)
+                if not is_triggered:
+                    cat = rule.get("category", "").lower()
+                    if activity == "shopping" and "shopping" in cat:
+                        is_triggered = True
+                        trigger_source = "🛍️ Shopping Context"
+                    elif activity == "dining" and ("alcohol" in cat or "social" in cat):
+                        is_triggered = True
+                        trigger_source = "🍽️ Dining Context"
+
+                if is_triggered:
+                    rule["trigger_info"] = trigger_source
+                    triggered_rules.append(rule)
     
-    # ADD SCAM ALERTS
+    # 5. SCAM ALERTS (Context-Independent Safety)
     scam_path = os.path.join(current_dir, "..", "data", "scams.json")
     if os.path.exists(scam_path):
         with open(scam_path, "r") as f:
             scam_data = json.load(f)
             scams = next((s["scams"] for s in scam_data if s["country"] == country), [])
-            # Only include 1-2 random scams for variety
             import random
-            random_scams = random.sample(scams, min(len(scams), 2))
-            for s in random_scams:
-                nearby.append({
+            if scams:
+                s = random.choice(scams)
+                triggered_rules.append({
                     "category": "⚠️ ALERT: Common Scam",
                     "rule": f"{s['name']}: {s['description']}",
                     "penalty": f"Defense: {s['defense']}",
-                    "urgency": 2
+                    "urgency": 2,
+                    "trigger_info": "🔎 Regional Safety Alert"
                 })
 
-    return nearby
+    return triggered_rules
+
+def get_welcome_alert(country: str):
+    """Method A: Sent immediately when crossing border (Urgency 1 rule)."""
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    filename = "kazakhstan_culture.json" if country.lower() == "kazakhstan" else "uae_culture.json"
+    json_path = os.path.join(current_dir, "..", "data", filename)
+    
+    if os.path.exists(json_path):
+        with open(json_path, "r") as f:
+            data = json.load(f)
+            rules = data if isinstance(data, list) else data.get("rules", [])
+            # Priority 1: Mandatory laws like Passport/Identity
+            critical = [r for r in rules if r.get("urgency") == 1 and r.get("location") is None]
+            if critical:
+                import random
+                return random.choice(critical)
+    return None
+
+def get_daily_safety_tip(country: str):
+    """Method A: Daily 24h random General rule."""
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    filename = "kazakhstan_culture.json" if country.lower() == "kazakhstan" else "uae_culture.json"
+    json_path = os.path.join(current_dir, "..", "data", filename)
+    
+    if os.path.exists(json_path):
+        with open(json_path, "r") as f:
+            data = json.load(f)
+            rules = data if isinstance(data, list) else data.get("rules", [])
+            general = [r for r in rules if r.get("location") is None]
+            if general:
+                import random
+                return random.choice(general)
+    return None
 
 SESSIONS = {}
 
 def get_cultural_tip(query: str, language: str = "English", profile: str = "General Traveler", session_id: str = "default") -> str:
+    """Method C: Specifically scan JSON for legal answers during Chat."""
     moderation_prompt = f"Is this question offensive or dangerous? Answer YES or NO: '{query}'"
     try:
         mod_llm = ChatGoogleGenerativeAI(model="models/gemini-flash-lite-latest", google_api_key=os.getenv("GEMINI_API_KEY"))
@@ -79,13 +152,29 @@ def get_cultural_tip(query: str, language: str = "English", profile: str = "Gene
             return "As your Roamly guide, I can only provide respectful advice. Please rephrase."
     except: pass
 
+    # Direct Pattern Matching for Method C
+    q_lower = query.lower()
+    manual_context = ""
+    # Simplified keyword hunt in local JSON to ensure Method C precision
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # Load KZ as default for demo
+    json_path = os.path.join(current_dir, "..", "data", "kazakhstan_culture.json")
+    if os.path.exists(json_path):
+        with open(json_path, "r") as f:
+            rules = json.load(f)
+            for r in rules:
+                if r.get("category", "").lower() in q_lower or any(word in r.get("rule", "").lower() for word in q_lower.split() if len(word) > 4):
+                    manual_context += f"FIXED RULE: {r['rule']}\n"
+                    break
+
     try:
         index = get_vector_db()
         query_vector = embeddings.embed_query(query)
-        search_results = index.query(vector=query_vector, top_k=3, include_metadata=True)
-        context = "\n".join([f"- {m['metadata']['rule']}" for m in search_results['matches']])
+        search_results = index.query(vector=query_vector, top_k=2, include_metadata=True)
+        vector_context = "\n".join([f"- {m['metadata'].get('rule', '')}" for m in search_results['matches']])
+        context = manual_context + "\n" + vector_context
     except:
-        context = "No specific rules found."
+        context = manual_context or "Consulting Roamly knowledge base..."
 
     history = SESSIONS.get(session_id, "")
     SESSIONS[session_id] = query
@@ -99,7 +188,7 @@ def get_cultural_tip(query: str, language: str = "English", profile: str = "Gene
     QUESTION: {query}
     
     Provide a concise (2-3 sentence) tip tailored to the profile. 
-    Mention local laws or cultural norms if relevant.
+    Mention local laws or cultural norms if relevant. Use the CONTEXT laws as primary truth.
     """)
     
     try:
@@ -107,7 +196,7 @@ def get_cultural_tip(query: str, language: str = "English", profile: str = "Gene
         llm = ChatGoogleGenerativeAI(model="models/gemini-2.0-flash", google_api_key=os.getenv("GEMINI_API_KEY"))
         return llm.invoke(formatted).content
     except:
-        return "System busy. Using local cache."
+        return "Roamly intelligence is offline. Please stick to basic safety protocols."
 
 def scan_image_with_gemini(image_base64: str, language: str = "English") -> str:
     prompt = f"""
