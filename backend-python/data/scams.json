@@ -1,0 +1,42 @@
+[
+  {
+    "country": "UAE",
+    "scams": [
+      {
+        "name": "Fake Police / CID Scam",
+        "description": "Scammers dressed as plainclothes officers (CID) approach you and ask for your ID or and check your wallet for 'fake cash.' They then pocket some bills or take your credit card.",
+        "defense": "Real CID officers will ALWAYS show their official ID card. If in doubt, call 901 (non-emergency Dubai Police) or walk to the nearest patrol car."
+      },
+      {
+         "name": "The Unlicensed Taxi",
+         "description": "Common at airports or outside malls. A 'friendly' driver offers a flat rate which ends up being 5x the meter price.",
+         "defense": "ONLY use official RTA Taxis (Cream colored for Dubai, Silver for Abu Dhabi) or Careem/Uber apps."
+      },
+      {
+         "name": "Perfume/Gold Souk Aggression",
+         "description": "Vendors in Deira might physically block your path or spray you with 'free samples' and then demand payment or follow you.",
+         "defense": "Be firm with a loud 'No Thank You.' Avoid accepting 'gifts' from strangers in high-traffic tourist markets."
+      }
+    ]
+  },
+  {
+    "country": "Kazakhstan",
+    "scams": [
+      {
+        "name": "The Fake Taxi / Overcharge",
+        "description": "Unlicensed drivers at airports (especially Almaty) approach tourists. They may use a 'speed-up' meter or demand an extra fee for 'luggage handling' at the end of the trip.",
+        "defense": "ONLY use the official Yandex Go, Uber KZ, or InDrive apps. Never negotiate a price in cash with an unlicensed driver."
+      },
+      {
+        "name": "The Rental Apartment Trap",
+        "description": "People listing beautiful apartments on local sites for a very low price. They ask for a 'booking fee' or deposit via a card transfer outside the platform.",
+        "defense": "Only use established booking platforms (Booking.com, Airbnb) for short-term stays. Never transfer money directly to a local bank account without a contract."
+      },
+      {
+          "name": "Photo with Animals",
+          "description": "On Panfilov Street (Almaty) or Arbat (Astana), people with owls or eagles might put the animal on your shoulder for a 'free photo' and then demand a high fee (AED 50-100 equivalent).",
+          "defense": "Politely say NO before they touch you. If it happens, offer a small amount (like 1000 tenge) and walk away."
+      }
+    ]
+  }
+]

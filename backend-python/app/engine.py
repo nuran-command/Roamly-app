@@ -26,26 +26,46 @@ embeddings = GoogleGenerativeAIEmbeddings(
 
 def get_nearby_rules(lat: float, lon: float):
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    if lat > 40: # Kazakhstan
+    is_kazakhstan = lat > 40
+    
+    if is_kazakhstan:
         json_path = os.path.join(current_dir, "..", "data", "kazakhstan_culture.json")
+        country = "Kazakhstan"
     else:
         json_path = os.path.join(current_dir, "..", "data", "uae_culture.json")
+        country = "UAE"
     
     nearby = []
-    if not os.path.exists(json_path):
-        return nearby
+    if os.path.exists(json_path):
+        with open(json_path, "r") as f:
+            data = json.load(f)
+            rules = data if isinstance(data, list) else data.get("rules", [])
+            for rule in rules:
+                if rule.get("location"):
+                    t_lat = rule["location"].get("latitude")
+                    t_lon = rule["location"].get("longitude")
+                    if t_lat and t_lon:
+                        dist = math.sqrt((lat - t_lat)**2 + (lon - t_lon)**2) * 111000
+                        if dist < 1500: # Expanded range to 1.5km
+                            nearby.append(rule)
+    
+    # ADD SCAM ALERTS
+    scam_path = os.path.join(current_dir, "..", "data", "scams.json")
+    if os.path.exists(scam_path):
+        with open(scam_path, "r") as f:
+            scam_data = json.load(f)
+            scams = next((s["scams"] for s in scam_data if s["country"] == country), [])
+            # Only include 1-2 random scams for variety
+            import random
+            random_scams = random.sample(scams, min(len(scams), 2))
+            for s in random_scams:
+                nearby.append({
+                    "category": "⚠️ ALERT: Common Scam",
+                    "rule": f"{s['name']}: {s['description']}",
+                    "penalty": f"Defense: {s['defense']}",
+                    "urgency": 2
+                })
 
-    with open(json_path, "r") as f:
-        data = json.load(f)
-        rules = data if isinstance(data, list) else data.get("rules", [])
-        for rule in rules:
-            if rule.get("location"):
-                t_lat = rule["location"].get("latitude")
-                t_lon = rule["location"].get("longitude")
-                if t_lat and t_lon:
-                    dist = math.sqrt((lat - t_lat)**2 + (lon - t_lon)**2) * 111000
-                    if dist < 1000:
-                        nearby.append(rule)
     return nearby
 
 SESSIONS = {}
@@ -90,15 +110,12 @@ def get_cultural_tip(query: str, language: str = "English", profile: str = "Gene
         return "System busy. Using local cache."
 
 def scan_image_with_gemini(image_base64: str, language: str = "English") -> str:
-    """
-    GASTRO HEALTH GUARD: Specialized Vision Prompt
-    """
     prompt = f"""
     You are the Roamly Gastro Guard. 
     1. Translate this menu/label into {language}.
     2. HEALTH FOCUS: Highlight high-sodium, high-sugar, or allergy-triggering (nuts, dairy) items.
     3. CULTURAL WARNING: Identify pork/alcohol in sensitive regions (Kazakhstan/UAE).
-    4. Provide a 'Local Tip' (e.g., 'Kazakh tea is often served with rich cream, watch the fat content').
+    4. Provide a 'Local Tip' (e.g., 'In Kazakhstan, tea is often served with rich cream - watch the fat content').
     Keep it very concise.
     """
     try:
@@ -109,11 +126,7 @@ def scan_image_with_gemini(image_base64: str, language: str = "English") -> str:
         return f"Gastro Guard Error: {str(e)}"
 
 def get_vibe_score(lat, lon):
-    """
-    VIBE METER: Uses OSM overpass to check density of amenities.
-    """
     overpass_url = "http://overpass-api.de/api/interpreter"
-    # Query for nearby shops, cafes, malls in 500m
     query = f"""
     [out:json];
     (
@@ -134,12 +147,9 @@ def get_vibe_score(lat, lon):
         return "🛡️ Normal Safety Baseline"
 
 def search_nearby_places(lat, lon, category="hospital"):
-    """
-    SAFE HAVEN FINDER: Prioritize Hospital/Police.
-    """
     api_key = os.getenv("GOOGLE_PLACES_API_KEY")
     url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat},{lon}&radius=5000&type={category}&key={api_key}"
     try:
         res = requests.get(url).json().get("results", [])
-        return [{"name": p.get("name"), "address": p.get("vicinity")} for p in res[:5]]
+        return [{"name": p.get("name"), "address": p.get("vicinity"), "lat": p.get("geometry", {}).get("location", {}).get("lat"), "lon": p.get("geometry", {}).get("location", {}).get("lon")} for p in res[:5]]
     except: return []

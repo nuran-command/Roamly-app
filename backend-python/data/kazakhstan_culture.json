@@ -3,32 +3,36 @@
     "category": "Photography",
     "urgency": 1,
     "trigger_zone": "Government Buildings / Military",
-    "rule": "Photographing government buildings, military installations, and border areas is strictly prohibited and can lead to detention by authorities.",
-    "penalty": "Confiscation of equipment, fines, and possible detention for questioning.",
-    "location": null
-  },
-  {
-    "category": "Alcohol",
-    "urgency": 2,
-    "trigger_zone": "Public Places",
-    "rule": "Drinking alcohol in public places (parks, streets, playgrounds) is an administrative offense. Alcohol should only be consumed in licensed bars and restaurants.",
-    "penalty": "Fine of approximately 5-10 MRP (Monthly Residential Project - standard fine unit in Kazakhstan).",
-    "location": null
+    "rule": "Photographing government buildings, military installations, checkpoints, and border areas is strictly prohibited in Kazakhstan. This includes certain airports and train stations. Authorities are highly sensitive to unauthorized filming of security personnel or sensitive infrastructure. Security guards may ask you to delete photos immediately.",
+    "penalty": "Confiscation of equipment, fine of 10-20 MRP, and possible detention for up to 15 days for questioning under administrative code. Permanent deportation for repeat offenders. Legal basis: Kazakhstan Administrative Code Article 443.",
+    "location": {
+         "name": "Ak Orda Presidential Palace Area",
+         "latitude": 51.1261,
+         "longitude": 71.4461
+    }
   },
   {
     "category": "Identity",
     "urgency": 1,
-    "trigger_zone": "Anywhere",
-    "rule": "Foreigners are required to carry their passport and registration documents at all times. Police have the right to stop and check identity documents.",
-    "penalty": "Fine or detention until identity is verified.",
+    "trigger_zone": "Public Areas",
+    "rule": "Foreigners MUST carry their original passport and migration card (if applicable) at all times. Police ('Politsiya') have the legal right to stop any individual and perform a random document check. Photocopies are generally not accepted as valid ID during a street check. If you do not have your passport, you can be detained until verified.",
+    "penalty": "Administrative fine of 5-10 MRP or detention at a police station until identity is confirmed via embassy or hotel. Risk of deportation if registration is expired. Legal basis: Law on Migration of RK.",
     "location": null
   },
   {
-    "category": "Mosques",
+    "category": "Alcohol",
+    "urgency": 1,
+    "trigger_zone": "Public Spaces (Parks, Streets, Yards)",
+    "rule": "Consuming alcohol in any public place (except licensed cafes/restaurants) is strictly illegal. This encompasses parks, benches, playgrounds, stairwells, and even standing outside a store with an open beer. Being in a state of 'apparent intoxication' in public — even if you aren't drinking at that moment — is also an offense if it 'offends public dignity.' High enforcement during holidays.",
+    "penalty": "First offense: Fine of 5 MRP (approx. $40). Second offense within a year: Fine of 10 MRP or detention for up to 5 days. Expats may face visa scrutiny for repeat offenses. Legal basis: Administrative Code Article 440.",
+    "location": null
+  },
+  {
+    "category": "Religious Sites",
     "urgency": 2,
-    "trigger_zone": "Religious Sites",
-    "rule": "When visiting mosques, dress modestly. Women should cover their heads and men should not wear shorts. Remove shoes before entering.",
-    "penalty": "Refusal of entry or request to leave.",
+    "trigger_zone": "Mosques and Orthodox Churches",
+    "rule": "When visiting the Hazrat Sultan Mosque or the Ascension Cathedral, modest dress is required. Women should cover their heads and shoulders (scarves are often provided at the entrance). Men must not wear shorts or sleeveless shirts. Avoid loud conversation or using phones inside. Remove shoes before entering any prayer hall. Do not walk in front of people praying.",
+    "penalty": "Immediate request to leave or denial of entry. Possible administrative fine for 'insulting religious feelings' in extreme cases. Legal basis: Article 490 of Administrative Code.",
     "location": {
       "name": "Hazrat Sultan Mosque",
       "latitude": 51.1255,
@@ -38,13 +42,37 @@
   {
     "category": "Drones",
     "urgency": 1,
-    "trigger_zone": "Astana Center / Restricted Airspace",
-    "rule": "Drones with a weight over 250g must be registered. Flying in Astana center without a special permit is strictly forbidden due to proximity to government buildings.",
-    "penalty": "Fine and confiscation of the drone.",
+    "trigger_zone": "Astana / Almaty Centers",
+    "rule": "Drones weighing more than 250g must be registered with the Civil Aviation Committee. Flying drones in central Astana (near the Presidential Palace, Ministries, or Baiterek Tower) is strictly forbidden and requires special military clearance. Jammers are frequently active in these zones, which can cause your drone to crash or 'fly away.'",
+    "penalty": "Confiscation of drone, fine of 10-50 MRP, and potential criminal charges if flown near strategic sites. Legal basis: Rules for Using Airspace of RK.",
     "location": {
-      "name": "Ak Orda Presidential Palace",
-      "latitude": 51.1261,
-      "longitude": 71.4461
+      "name": "Baiterek Tower / Water-Green Boulevard",
+      "latitude": 51.1283,
+      "longitude": 71.4305
     }
+  },
+  {
+      "category": "Social Manners",
+      "urgency": 3,
+      "trigger_zone": "Restaurants / Cafes",
+      "rule": "In Kazakhstan, a service charge (usually 10-15%) is almost always automatically included in the bill. This is NOT a tip for the waiter, but a fee that goes to the establishment. If you want to tip the server, you should leave an additional 5-10% in cash or ask to add it to the card payment. Tipping is highly appreciated and expected in high-end venues in Almaty and Astana.",
+      "penalty": "Poor service on next visit. No legal penalty.",
+      "location": null
+  },
+  {
+      "category": "Smoking",
+      "urgency": 2,
+      "trigger_zone": "Public Transport / Entrances",
+      "rule": "Smoking (including e-cigarettes/vaping) is banned in all public indoor spaces, bus stops, playgrounds, and within 10 meters of building entrances. Vaping is increasingly regulated and treated the same as traditional smoking. Hookah (shisha) is banned in most indoor public cafes as of 2024.",
+      "penalty": "Fine of 15-20 MRP. Legal basis: Code of Health and Healthcare System.",
+      "location": null
+  },
+  {
+      "category": "Driving",
+      "urgency": 1,
+      "trigger_zone": "Roads",
+      "rule": "Kazakhstan has a strictly interpreted 'Zero Tolerance' for any amount of alcohol while driving. If you are stopped and a breathalyzer detects ANY trace of alcohol (even from a light beer hours ago), you will be arrested. Bribing a police officer is a criminal offense for both parties and is heavily monitored by dashcams and bodycams in major cities.",
+      "penalty": "Administrative arrest for 15 days + loss of driving license for 7 years. Bribing: Up to 5 years imprisonment. Legal basis: Administrative Code Article 608; Criminal Code Article 367.",
+      "location": null
   }
 ]
