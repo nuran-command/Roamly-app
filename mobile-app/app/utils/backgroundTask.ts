@@ -51,7 +51,7 @@ export const BackgroundTaskManager = {
               notificationBody: "Monitoring cultural rules in your area.",
               notificationColor: "#3B82F6",
            },
-           pausesLocationUpdatesAutomatically: true,
+           pausesUpdatesAutomatically: true,
         });
         console.log("[Background Task] Initialized 5-minute safety pulse.");
       }

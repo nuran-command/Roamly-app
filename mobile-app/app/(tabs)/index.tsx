@@ -186,5 +186,4 @@ const styles = StyleSheet.create({
   gridBtnText: { color: '#fff', fontWeight: 'bold', marginTop: 12, fontSize: 14 },
   sosButton: { flexDirection: 'row', marginTop: 30, backgroundColor: 'rgba(239, 68, 68, 0.1)', width: '100%', padding: 20, borderRadius: 20, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#EF4444' },
   sosText: { color: '#F87171', fontWeight: 'bold', fontSize: 16 }
-  }
 });
