@@ -242,3 +242,36 @@ def search_nearby_places(lat, lon, category="hospital"):
         res = requests.get(url).json().get("results", [])
         return [{"name": p.get("name"), "address": p.get("vicinity"), "lat": p.get("geometry", {}).get("location", {}).get("lat"), "lon": p.get("geometry", {}).get("location", {}).get("lon")} for p in res[:5]]
     except: return []
+
+def load_scams_data(country: str):
+    """Loads country-specific scam warnings from JSON."""
+    try:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        json_path = os.path.join(current_dir, "..", "data", "scams.json")
+        with open(json_path, "r") as f:
+            data = json.load(f)
+            for item in data:
+                if country.lower() in item['country'].lower() or item['country'].lower() in country.lower():
+                    return item['scams']
+    except Exception as e:
+        print(f"Scam Load Error: {e}")
+    return []
+
+def get_scam_alerts(country: str):
+    """Returns the top scams as high-urgency safety alerts."""
+    scams = load_scams_data(country)
+    if not scams:
+        return []
+    
+    # Format them as safety alerts for the UI
+    alerts = []
+    for s in scams:
+        alerts.append({
+            "category": "SCAM AWARENESS",
+            "urgency": 2,
+            "trigger_zone": "Tourist Areas / Transport Hubs",
+            "rule": f"{s['name']}: {s['description']}",
+            "penalty": f"Defense: {s['defense']}",
+            "location": None
+        })
+    return alerts

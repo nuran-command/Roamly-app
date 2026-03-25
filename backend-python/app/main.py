@@ -8,7 +8,8 @@ from app.engine import (
     get_vibe_score,
     get_welcome_alert,
     get_daily_safety_tip,
-    load_culture_data
+    load_culture_data,
+    get_scam_alerts
 )
 from app.utilities import get_exchange_rate, get_emergency_alerts
 from app.osm_service import get_restricted_polygons
@@ -45,10 +46,22 @@ def sync_all_rules(country: str = "Kazakhstan"):
     data = load_culture_data(country)
     return {"rules": data}
 
+@app.post("/scams")
+def scams(request: dict):
+    # Method B: Scam awareness for specific country
+    return {"scams": get_scam_alerts(request.get("country", "Kazakhstan"))}
+
 @app.post("/safety-check")
 def safety_check(request: LocationRequest):
     # Method B: Speed/Activity based filters
     rules = get_nearby_rules(request.lat, request.lon, request.speed, request.activity)
+    scams = get_scam_alerts(request.country)
+    
+    # Mix one random scam for awareness
+    if scams:
+        import random
+        rules.append(random.choice(scams))
+
     polygons = get_restricted_polygons(request.lat, request.lon)
     disasters = get_emergency_alerts(request.lat, request.lon)
     vibe = get_vibe_score(request.lat, request.lon)

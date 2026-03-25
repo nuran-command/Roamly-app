@@ -155,15 +155,3 @@ const styles = StyleSheet.create({
   legendText: { color: '#CBD5E1', fontSize: 12, fontWeight: 'bold' },
   refreshBtn: { position: 'absolute', top: 50, right: 20, backgroundColor: '#3B82F6', width: 50, height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center', elevation: 5 }
 });
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#0F172A' },
-  map: { width: '100%', height: '100%' },
-  webHeader: { padding: 20, backgroundColor: '#1E293B', alignItems: 'center', borderBottomWidth: 1, borderColor: '#334155' },
-  webHeaderText: { color: '#fff', fontWeight: 'bold', fontSize: 16 },
-  overlay: { position: 'absolute', bottom: 30, left: 20, backgroundColor: 'rgba(15, 23, 42, 0.9)', padding: 15, borderRadius: 20, borderWidth: 1, borderColor: '#334155' },
-  legendRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 5 },
-  dot: { width: 10, height: 10, borderRadius: 5, marginRight: 10 },
-  legendText: { color: '#CBD5E1', fontSize: 12, fontWeight: 'bold' },
-  refreshBtn: { position: 'absolute', top: 50, right: 20, backgroundColor: '#3B82F6', width: 50, height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center', elevation: 5 }
-});
